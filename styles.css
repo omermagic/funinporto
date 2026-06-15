@@ -16,7 +16,11 @@
 
 /* Base */
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{
+  max-width:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
 body{
   margin:0;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
@@ -294,9 +298,25 @@ h1{
 .band .card p{color:rgba(255,255,255,.82)}
 
 .quote{margin-bottom:8px;color:var(--ink);font-size:1.18rem;font-weight:950;line-height:1.25}
-.stars{margin-bottom:10px;color:#d88315;letter-spacing:0}
-.honesty{background:linear-gradient(180deg,rgba(18,110,166,.08),rgba(255,255,255,.94));border-color:rgba(18,110,166,.18)}
-.testimonial{min-height:210px}
+.proof-card{
+  background:linear-gradient(180deg,rgba(18,110,166,.08),rgba(255,255,255,.96));
+  border-color:rgba(18,110,166,.18);
+}
+.proof-label{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:var(--radius);
+  background:rgba(18,110,166,.1);
+  color:var(--azulejo-dark);
+  font-weight:950;
+  margin-bottom:14px;
+}
+.review-card{display:flex;flex-direction:column;gap:12px}
+.review-stars{color:#d88315;font-weight:950;letter-spacing:0}
+.review-text{color:var(--ink);font-size:1.05rem;font-weight:750;line-height:1.45}
+.review-meta{color:var(--muted);font-size:.92rem;font-weight:850;margin-top:auto}
 
 /* Booking CTA */
 .booking-card{
@@ -387,45 +407,155 @@ h1{
 }
 
 @media(max-width:760px){
+  body{padding-bottom:74px}
+  .container{
+    width:auto;
+    max-width:none;
+    margin-left:16px;
+    margin-right:16px;
+  }
   .nav-links{display:none}
-  .nav-inner{gap:12px}
+  .nav{
+    background:rgba(246,247,242,.96);
+    box-shadow:0 10px 24px rgba(16,34,42,.08);
+  }
+  .nav-inner{min-height:64px;gap:12px}
   .logo{font-size:1.03rem}
   .logo-mark{width:36px;height:36px}
   .nav .btn{padding:11px 14px;min-height:42px;font-size:.88rem}
   .hero{
-    padding:48px 0 40px;
+    min-height:auto;
+    display:block;
+    padding:24px 0 28px;
+    background-image:
+      linear-gradient(180deg,rgba(6,19,24,.18) 0%,rgba(6,19,24,.72) 44%,rgba(6,19,24,.92) 100%),
+      url("assets/porto-hero.jpg");
     background-position:center top;
   }
-  h1{font-size:2.72rem;line-height:1.02}
-  .lead{font-size:1.06rem}
-  .section{padding:58px 0}
-  .section h2{font-size:2.08rem}
-  .section-intro{font-size:1rem}
+  .rtl .hero{
+    background-image:
+      linear-gradient(180deg,rgba(6,19,24,.18) 0%,rgba(6,19,24,.72) 44%,rgba(6,19,24,.92) 100%),
+      url("assets/porto-hero.jpg");
+  }
+  .hero:after{height:5px}
+  .hero-shell{display:block}
+  .hero-copy{
+    width:auto;
+    max-width:none;
+    margin-inline:0;
+    padding:17px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:16px;
+    background:rgba(7,25,31,.68);
+    backdrop-filter:blur(16px);
+    box-shadow:0 20px 44px rgba(0,0,0,.24);
+    overflow:hidden;
+  }
+  .hero-copy > *{max-width:100%}
+  .kicker{
+    padding:6px 9px;
+    font-size:.69rem;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+  h1{font-size:1.78rem;line-height:1.06;margin-bottom:12px}
+  .lead{
+    width:100%;
+    max-width:100%;
+    font-size:.92rem;
+    line-height:1.4;
+    margin-bottom:15px;
+    overflow-wrap:break-word;
+  }
+  .hero-actions{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    margin:17px 0 0;
+  }
+  .hero-actions .btn{
+    width:100%;
+    min-height:48px;
+    padding:11px 10px;
+    font-size:.9rem;
+    white-space:normal;
+    line-height:1.15;
+  }
+  .micro{display:none}
+  .hero-highlights{
+    display:block;
+    width:auto;
+    max-width:none;
+    margin-inline:0;
+    margin-top:12px;
+    border-radius:16px;
+    box-shadow:0 16px 34px rgba(0,0,0,.18);
+  }
+  .snapshot-main{display:none}
+  .quick-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .quick-facts div{padding:13px 10px}
+  .quick-facts strong{font-size:1rem}
+  .quick-facts span{font-size:.72rem}
+  .section{padding:54px 0}
+  .section h2{font-size:2.02rem;line-height:1.08}
+  .section-intro{font-size:1rem;line-height:1.55}
   .grid.cols-4,.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
-  .band{padding:56px 0}
-  .hero-highlights{display:none}
+  .grid{gap:14px}
+  .card{
+    border-radius:12px;
+    padding:22px;
+    box-shadow:0 12px 28px rgba(16,34,42,.08);
+  }
+  .card:hover{transform:none}
+  .band,.booking-card{
+    width:calc(100% + 32px);
+    margin:0 -16px;
+    padding:54px 0;
+    background-position:center;
+  }
+  .footer{padding-bottom:108px}
+  .whatsapp-float{
+    left:14px;
+    right:14px;
+    bottom:12px;
+    width:auto;
+    height:56px;
+    border-radius:999px;
+    font-size:0;
+    box-shadow:0 18px 40px rgba(16,34,42,.32);
+  }
+  .whatsapp-float:before{
+    content:"Book on WhatsApp";
+    font-size:1rem;
+    font-weight:950;
+  }
+  .rtl .whatsapp-float:before{content:"הזמנה בוואטסאפ"}
 }
 
 @media(max-width:520px){
-  .container{width:calc(100vw - 28px)}
+  .container{
+    width:auto;
+    max-width:none;
+    margin-left:16px;
+    margin-right:16px;
+  }
   .nav .btn{display:none}
   .hero-actions .btn{width:100%}
-  .kicker{font-size:.8rem}
-  h1{font-size:2.12rem;width:320px;max-width:100%}
-  .lead,.micro,.section-intro{width:320px;max-width:100%}
-  .hero-actions{width:320px;max-width:100%}
-  .card{padding:20px}
+  .kicker{max-width:100%;font-size:.72rem}
+  h1{font-size:1.7rem;width:auto;max-width:100%}
+  .lead,.micro,.section-intro{width:auto;max-width:100%}
+  .hero-actions{width:auto;max-width:100%}
+  .card{padding:21px}
   .booking-card{padding:48px 0}
-  .quick-facts{grid-template-columns:1fr}
-  .quick-facts div{border-right:0;border-top:1px solid rgba(255,255,255,.14)}
+  .quick-facts div{border-top:0}
   .footer-inner{display:block}
   .footer-inner div+div{margin-top:12px}
-  .rtl .container{margin-left:14px;margin-right:0}
+  .rtl .container{margin-left:16px;margin-right:16px}
   .rtl .nav-inner{direction:ltr;justify-content:flex-start}
-  .rtl .hero-shell,.rtl .grid{direction:ltr}
+  .rtl .hero-shell,.rtl .grid{direction:rtl}
   .rtl .hero-copy,.rtl .card,.rtl .section h2,.rtl .section-intro{direction:rtl;text-align:right}
   .rtl .hero-copy,.rtl .hero-actions{margin-left:0;margin-right:auto}
-  .rtl .section h2,.rtl .section-intro,.rtl .grid{width:320px;max-width:100%;margin-left:0;margin-right:auto}
+  .rtl .section h2,.rtl .section-intro,.rtl .grid{width:auto;max-width:100%;margin-left:0;margin-right:0}
   .rtl .booking-card{text-align:center}
   .rtl .booking-card h2,.rtl .booking-card .section-intro{text-align:center}
 }
