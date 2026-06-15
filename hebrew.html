@@ -4,24 +4,210 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>סיור חינמי בפורטו בעברית | Fun in Porto</title>
-  <meta name="description" content="סיור חינמי בפורטו בעברית. סיפורים, תצפיות, המלצות מקומיות וטיפ בסוף לפי החוויה." />
+  <meta
+    name="description"
+    content="סיור חינמי בפורטו בעברית. סיפורים, תצפיות, המלצות מקומיות וטיפ בסוף לפי החוויה."
+  />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="rtl">
-  <nav class="nav"><div class="container nav-inner"><a class="logo" href="index.html"><span class="logo-mark">☀️</span><span>Fun in Porto</span></a><div class="nav-links"><a href="index.html">ראשי</a><a href="english.html">English</a><a href="#details">פרטים</a><a href="#book">הזמנה</a></div><button class="btn sun" onclick="openWhatsApp('he')">הזמנה בוואטסאפ</button></div></nav>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark" aria-hidden="true">FP</span>
+        <span>Fun in Porto</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">ראשי</a>
+        <a href="english.html">English</a>
+        <a href="#details">פרטים</a>
+        <a href="#book">הזמנה</a>
+      </div>
+
+      <button class="btn sun" onclick="openWhatsApp('he')">הזמנה בוואטסאפ</button>
+    </div>
+  </nav>
+
   <main>
-    <section class="hero"><div class="container hero-grid"><div><div class="kicker">סיור בעברית · חינם להצטרפות · טיפ לפי החוויה</div><h1>סיור חינמי בפורטו בעברית</h1><p class="lead">גלו את פורטו דרך סיפורים, תצפיות, סמטאות יפות, המלצות מקומיות ואווירה כיפית — בעברית, בגובה העיניים.</p><div class="hero-actions"><button class="btn" onclick="openWhatsApp('he')">הזמנת מקום</button><a class="btn alt" href="index.html">חזרה לעמוד הראשי</a></div><p class="micro">אין מחיר קבוע. בסוף הסיור משאירים טיפ לפי החוויה.</p></div><div class="visual"><div class="postcard big"><div class="sun-dot"></div><div class="bridge"></div></div><div class="postcard tile"><span class="badge">עברית</span><h3>פורטו שמבינים</h3><p>סיור ראשון מושלם כדי להבין את העיר ולהרגיש בבית.</p></div><div class="postcard mini"><span class="badge">2–2.5 שעות</span><h3>כיף, קליל ושימושי</h3><p>סיפורים, תצפיות והמלצות להמשך הטיול.</p></div></div></div></section>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="hero-copy">
+          <div class="kicker">סיור בעברית · חינם להצטרפות · טיפ לפי החוויה</div>
+          <h1>סיור חינמי בפורטו בעברית</h1>
+          <p class="lead">
+            גלו את פורטו דרך סיפורים, תצפיות, סמטאות יפות, המלצות מקומיות
+            ואווירה כיפית — בעברית, בגובה העיניים.
+          </p>
 
-    <section class="section"><div class="container"><h2>מה נראה בסיור?</h2><p class="section-intro">מסלול שנבנה כדי לתת גם יופי, גם הבנה של העיר, וגם המלצות אמיתיות להמשך.</p><div class="grid cols-3"><div class="card"><h3>פורטו הקלאסית</h3><ul class="details-list"><li>תחנת São Bento והאריחים המפורסמים</li><li>אזור הקתדרלה של פורטו</li><li>ריביירה ותצפיות על נהר הדואורו</li></ul></div><div class="card"><h3>תצפיות וסיפורים</h3><ul class="details-list"><li>נופים לגשר Dom Luís I</li><li>סמטאות ופינות צילום יפות</li><li>סיפורים מצחיקים ומעניינים על העיר</li></ul></div><div class="card"><h3>טיפים שימושיים</h3><ul class="details-list"><li>המלצות לאוכל, יין וקפה</li><li>מה לעשות אחרי הסיור</li><li>מה אפשר לדלג אם הזמן קצר</li></ul></div></div></div></section>
+          <div class="hero-actions">
+            <button class="btn" onclick="openWhatsApp('he')">הזמנת מקום</button>
+            <a class="btn alt" href="index.html">חזרה לעמוד הראשי</a>
+          </div>
 
-    <section id="details" class="section"><div class="container"><div class="band"><h2>למה דווקא הסיור הזה?</h2><p class="section-intro">כי פורטו היא לא רק “עוד עיר יפה באירופה”. יש בה נהר, עליות, סיפורים, אוכל, יין, כדורגל, אנשים חזקים והמון אופי. בסיור הזה מקבלים גם חוויה וגם הבנה אמיתית של העיר.</p><div class="grid cols-4"><div class="card"><h3>משך הסיור</h3><p>כשעתיים עד שעתיים וחצי.</p></div><div class="card"><h3>שפה</h3><p>עברית.</p></div><div class="card"><h3>עלות</h3><p>חינם להצטרפות. טיפ בסוף לפי החוויה.</p></div><div class="card"><h3>נקודת מפגש</h3><p>מרכז פורטו, תישלח אחרי ההזמנה.</p></div></div></div></div></section>
+          <p class="micro">אין מחיר קבוע. בסוף הסיור משאירים טיפ לפי החוויה.</p>
+        </div>
 
-    <section class="section"><div class="container"><h2>מה אנשים בדרך כלל אוהבים בסיור כזה?</h2><p class="section-intro">ביקורות אמיתיות יעלו אחרי הסיורים הראשונים. עד אז — זו ההבטחה הכנה שהחוויה בנויה סביבה.</p><div class="grid cols-3"><div class="card honesty"><div class="stars">★★★★★</div><div class="quote">“פתאום העיר מובנת.”</div><p>איפה לטייל, מה חשוב, איפה לאכול, ולאן לחזור אחר כך לבד.</p></div><div class="card honesty"><div class="stars">★★★★★</div><div class="quote">“לא מרגיש תיירותי מדי.”</div><p>סיור קליל, מצחיק, עם מקום לשאלות והמלצות אמיתיות.</p></div><div class="card honesty"><div class="stars">★★★★★</div><div class="quote">“משלמים לפי החוויה.”</div><p>אין מחיר קבוע. אם נהניתם — משאירים טיפ בסוף.</p></div></div></div></section>
+        <aside class="hero-highlights" aria-label="תקציר הסיור">
+          <div class="snapshot-main">
+            <span class="eyebrow">סיור בעברית</span>
+            <strong>פורטו שמבינים</strong>
+            <span>סיור ראשון מושלם כדי להבין את העיר ולהרגיש בבית.</span>
+          </div>
 
-    <section id="book" class="section"><div class="container"><div class="card" style="text-align:center;padding:42px"><h2>רוצים לגלות את פורטו?</h2><p class="section-intro" style="margin-left:auto;margin-right:auto">שלחו הודעת וואטסאפ עם תאריך, מספר משתתפים ושם. נחזור אליכם עם זמינות ונקודת מפגש.</p><button class="btn sun" onclick="openWhatsApp('he')">הזמנת סיור בעברית בוואטסאפ</button></div></div></section>
+          <div class="quick-facts">
+            <div>
+              <strong>2-2.5</strong>
+              <span>שעות</span>
+            </div>
+            <div>
+              <strong>HE</strong>
+              <span>שפה</span>
+            </div>
+            <div>
+              <strong>טיפ</strong>
+              <span>לפי החוויה</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="section">
+      <div class="container">
+        <h2>מה נראה בסיור?</h2>
+        <p class="section-intro">
+          מסלול שנבנה כדי לתת גם יופי, גם הבנה של העיר, וגם המלצות אמיתיות להמשך.
+        </p>
+
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>פורטו הקלאסית</h3>
+            <ul class="details-list">
+              <li>תחנת São Bento והאריחים המפורסמים</li>
+              <li>אזור הקתדרלה של פורטו</li>
+              <li>ריביירה ותצפיות על נהר הדואורו</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>תצפיות וסיפורים</h3>
+            <ul class="details-list">
+              <li>נופים לגשר Dom Luís I</li>
+              <li>סמטאות ופינות צילום יפות</li>
+              <li>סיפורים מצחיקים ומעניינים על העיר</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>טיפים שימושיים</h3>
+            <ul class="details-list">
+              <li>המלצות לאוכל, יין וקפה</li>
+              <li>מה לעשות אחרי הסיור</li>
+              <li>מה אפשר לדלג אם הזמן קצר</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Details -->
+    <section id="details" class="section">
+      <div class="container">
+        <div class="band">
+          <h2>למה דווקא הסיור הזה?</h2>
+          <p class="section-intro">
+            כי פורטו היא לא רק “עוד עיר יפה באירופה”. יש בה נהר, עליות,
+            סיפורים, אוכל, יין, כדורגל, אנשים חזקים והמון אופי. בסיור הזה
+            מקבלים גם חוויה וגם הבנה אמיתית של העיר.
+          </p>
+
+          <div class="grid cols-4">
+            <div class="card">
+              <h3>משך הסיור</h3>
+              <p>כשעתיים עד שעתיים וחצי.</p>
+            </div>
+
+            <div class="card">
+              <h3>שפה</h3>
+              <p>עברית.</p>
+            </div>
+
+            <div class="card">
+              <h3>עלות</h3>
+              <p>חינם להצטרפות. טיפ בסוף לפי החוויה.</p>
+            </div>
+
+            <div class="card">
+              <h3>נקודת מפגש</h3>
+              <p>מרכז פורטו, תישלח אחרי ההזמנה.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guest experience -->
+    <section class="section">
+      <div class="container">
+        <h2>למה מטיילים ממליצים על הסיור?</h2>
+        <p class="section-intro">
+          סיור ראשון טוב צריך להפוך את פורטו לברורה יותר, נעימה יותר
+          ושימושית יותר להמשך הטיול.
+        </p>
+
+        <div class="grid cols-3">
+          <div class="card honesty">
+            <div class="stars">★★★★★</div>
+            <div class="quote">פתאום העיר מובנת</div>
+            <p>איפה לטייל, מה חשוב, איפה לאכול, ולאן לחזור אחר כך לבד.</p>
+          </div>
+
+          <div class="card honesty">
+            <div class="stars">★★★★★</div>
+            <div class="quote">לא מרגיש תיירותי מדי</div>
+            <p>סיור קליל, מצחיק, עם מקום לשאלות והמלצות אמיתיות.</p>
+          </div>
+
+          <div class="card honesty">
+            <div class="stars">★★★★★</div>
+            <div class="quote">משלמים לפי החוויה</div>
+            <p>אין מחיר קבוע. אם נהניתם — משאירים טיפ בסוף.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking -->
+    <section id="book" class="section">
+      <div class="container">
+        <div class="booking-card">
+          <h2>רוצים לגלות את פורטו?</h2>
+          <p class="section-intro">
+            שלחו הודעת וואטסאפ עם תאריך, מספר משתתפים ושם. נחזור אליכם עם
+            זמינות ונקודת מפגש.
+          </p>
+          <button class="btn sun" onclick="openWhatsApp('he')">
+            הזמנת סיור בעברית בוואטסאפ
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
-  <a class="whatsapp-float" onclick="openWhatsApp('he')" aria-label="הזמנה בוואטסאפ">☘</a>
-  <footer class="footer"><div class="container footer-inner"><div>© Fun in Porto</div><div><a href="index.html">ראשי</a> · <a href="english.html">English</a></div></div></footer>
+
+  <a class="whatsapp-float" onclick="openWhatsApp('he')" aria-label="הזמנה בוואטסאפ">WA</a>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Fun in Porto</div>
+      <div>
+        <a href="index.html">ראשי</a> · <a href="english.html">English</a>
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
