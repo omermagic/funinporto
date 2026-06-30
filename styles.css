@@ -710,6 +710,26 @@ h1{
   box-shadow:0 20px 54px rgba(16,34,42,.12);
 }
 .review-submit-copy .section-intro{margin-bottom:0}
+.review-submit-actions{
+  align-self:center;
+  display:grid;
+  gap:13px;
+  justify-items:start;
+  padding:24px;
+  border:1px solid rgba(16,34,42,.1);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.58);
+  box-shadow:0 14px 34px rgba(16,34,42,.08);
+}
+.review-submit-actions .btn{
+  min-width:210px;
+}
+.review-submit-actions p{
+  margin:0;
+  color:var(--muted);
+  font-weight:750;
+  line-height:1.45;
+}
 .review-form{
   display:grid;
   gap:16px;
@@ -956,6 +976,12 @@ body.modal-open{overflow:hidden}
 .booking-submit{justify-self:start;margin-top:4px}
 .booking-actions{margin-top:2px}
 .booking-actions .form-status:empty{display:none}
+.review-dialog{
+  width:min(720px,100%);
+}
+.review-dialog .review-form textarea{
+  min-height:122px;
+}
 
 /* FAQ */
 .faq details{
@@ -1148,7 +1174,7 @@ body.modal-open{overflow:hidden}
     font-size:.72rem;
   }
   .hero-highlights{
-    display:block;
+    display:none;
     width:auto;
     max-width:none;
     margin-inline:0;
@@ -1193,6 +1219,14 @@ body.modal-open{overflow:hidden}
     gap:22px;
     padding:26px 22px;
     border-radius:16px;
+  }
+  .review-submit-actions{
+    justify-items:stretch;
+    padding:20px;
+  }
+  .review-submit-actions .btn{
+    width:100%;
+    min-width:0;
   }
   .source-note{
     display:block;

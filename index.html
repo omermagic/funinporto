@@ -8,7 +8,7 @@
     name="description"
     content="Free walking tours in Porto with long-time Porto guides, fun stories, viewpoints, local tips, and a tips-based experience."
   />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260630" />
 </head>
 <body>
   <nav class="nav">
@@ -26,7 +26,7 @@
         <a href="#faq">FAQ</a>
       </div>
 
-      <button class="btn sun" onclick="openWhatsApp()">Book a tour</button>
+      <button class="btn sun" onclick="openWhatsApp()">Book a free tour</button>
     </div>
   </nav>
 
@@ -44,7 +44,7 @@
           </p>
 
           <div class="hero-actions">
-            <button class="btn" onclick="openWhatsApp()">Reserve a spot</button>
+            <button class="btn" onclick="openWhatsApp()">Book a free tour</button>
           </div>
 
           <div class="hero-proof" aria-label="Tour trust signals">
@@ -88,7 +88,7 @@
       <div class="container trust-inner">
         <div>
           <strong>Free to join</strong>
-          <span>Reserve now, tip what it was worth at the end.</span>
+          <span>Book now, tip what it was worth at the end.</span>
         </div>
         <div>
           <strong>Human confirmation</strong>
@@ -106,7 +106,7 @@
       <div class="container">
         <h2>Book fast. Walk easy.</h2>
         <p class="section-intro">
-          The best free walking tours make everything simple: reserve, meet,
+          The best free walking tours make everything simple: book, meet,
           enjoy, and tip based on your experience.
         </p>
 
@@ -350,9 +350,9 @@
             </div>
 
             <div class="booking-panel">
-              <strong>Reserve in under a minute</strong>
+              <strong>Book a free tour in under a minute</strong>
               <span>Name, phone, date, guest count. That is it.</span>
-              <button class="btn sun" onclick="openWhatsApp()">Book your spot</button>
+              <button class="btn sun" onclick="openWhatsApp()">Book a free tour</button>
               <p class="booking-phone">
                 Prefer WhatsApp? <a href="https://wa.me/351937106777" target="_blank" rel="noopener">+351 937 106 777</a>
               </p>
@@ -370,7 +370,7 @@
         <details open>
           <summary>Is it really free?</summary>
           <p>
-            Yes. It is free to join and reserve. At the end, you decide how much
+            Yes. It is free to join and book. At the end, you decide how much
             to tip based on your experience.
           </p>
         </details>
@@ -457,62 +457,18 @@
       <div class="container">
         <div class="review-submit-panel">
           <div class="review-submit-copy">
-            <span class="guide-tag">Share your experience</span>
-            <h2>Leave a review</h2>
+            <span class="guide-tag">Guest feedback</span>
+            <h2>Enjoyed the walk?</h2>
             <p class="section-intro">
               Joined one of our walks? Send us your feedback and it will arrive
               directly in our email.
             </p>
           </div>
 
-          <form
-            class="review-form"
-            action="https://api.web3forms.com/submit"
-            method="POST"
-            data-review-form
-            data-success-message="Thank you! Your review was sent."
-            data-error-message="Something went wrong. Please try again or send us a WhatsApp message."
-            data-sending-message="Sending your review..."
-          >
-            <input type="hidden" name="access_key" value="9f9a1675-060f-491a-bee9-6dbded9e081b" />
-            <input type="hidden" name="subject" value="New Fun in Porto review" />
-            <input type="hidden" name="from_name" value="Fun in Porto website" />
-            <input type="hidden" name="tour" value="Porto walking tour" />
-            <input type="checkbox" name="botcheck" class="bot-field" tabindex="-1" autocomplete="off" />
-
-            <div class="form-row">
-              <label>
-                <span>Name</span>
-                <input type="text" name="name" autocomplete="name" required />
-              </label>
-
-              <label>
-                <span>Email</span>
-                <input type="email" name="email" autocomplete="email" required />
-              </label>
-            </div>
-
-            <label>
-              <span>Rating</span>
-              <select name="rating" required>
-                <option value="5 stars">5 stars</option>
-                <option value="4 stars">4 stars</option>
-                <option value="3 stars">3 stars</option>
-                <option value="2 stars">2 stars</option>
-                <option value="1 star">1 star</option>
-              </select>
-            </label>
-
-            <label>
-              <span>Your review</span>
-              <textarea name="message" rows="5" required></textarea>
-            </label>
-
-            <div class="form-actions">
-              <button class="btn sun" type="submit">Send review</button>
-              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
-            </div>
-          </form>
+          <div class="review-submit-actions">
+            <button class="btn sun" type="button" onclick="openReviewModal()">Leave a review</button>
+            <p>It takes less than a minute and helps future travelers choose the walk.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -532,12 +488,12 @@
     <div class="container footer-inner">
       <div>© <span data-current-year>2026</span> Fun in Porto · Free walking tours in Porto</div>
       <div>
-        <a href="#book">Book a tour</a> ·
+        <a href="#book">Book a free tour</a> ·
         <a href="https://wa.me/351937106777" target="_blank" rel="noopener">WhatsApp +351 937 106 777</a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260630-3"></script>
 </body>
 </html>

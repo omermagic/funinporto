@@ -2,6 +2,7 @@ const WHATSAPP_PHONE = '351937106777';
 const WHATSAPP_DISPLAY = '+351 937 106 777';
 const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
 let bookingLastFocus = null;
+let reviewLastFocus = null;
 
 function openWhatsApp() {
   openBookingModal();
@@ -47,7 +48,7 @@ function ensureBookingModal() {
 
         <div class="booking-dialog-copy">
           <span class="guide-tag">Quick booking</span>
-          <h2 id="booking-title">Reserve your walk</h2>
+          <h2 id="booking-title">Book your free tour</h2>
           <p>Send your details. We will confirm on WhatsApp.</p>
         </div>
 
@@ -96,7 +97,7 @@ function ensureBookingModal() {
           </p>
 
           <div class="form-actions booking-actions">
-            <button class="btn sun booking-submit" type="submit">Request booking</button>
+            <button class="btn sun booking-submit" type="submit">Book a free tour</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -140,6 +141,87 @@ function ensureBookingModal() {
         dateInput.min = getTodayInputValue();
         dateInput.value = dateInput.min;
       },
+    });
+  });
+}
+
+function ensureReviewModal() {
+  if (document.querySelector('[data-review-modal]')) return;
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="booking-modal review-modal" data-review-modal hidden>
+      <div class="booking-modal-backdrop" data-review-close></div>
+      <section class="booking-dialog review-dialog" role="dialog" aria-modal="true" aria-labelledby="review-title">
+        <button class="booking-close" type="button" data-review-close aria-label="Close review form">×</button>
+
+        <div class="booking-dialog-copy">
+          <span class="guide-tag">Guest review</span>
+          <h2 id="review-title">Leave a review</h2>
+          <p>Tell us how the walk felt. Your note arrives directly in our email.</p>
+        </div>
+
+        <form
+          class="review-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          data-review-form
+          data-success-message="Thank you! Your review was sent."
+          data-error-message="Something went wrong. Please try again or send us a WhatsApp message."
+          data-sending-message="Sending your review..."
+        >
+          <input type="hidden" name="access_key" value="${WEB3FORMS_ACCESS_KEY}" />
+          <input type="hidden" name="subject" value="New Fun in Porto review" />
+          <input type="hidden" name="from_name" value="Fun in Porto website" />
+          <input type="hidden" name="tour" value="Porto walking tour" />
+          <input type="checkbox" name="botcheck" class="bot-field" tabindex="-1" autocomplete="off" />
+
+          <div class="form-row">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Rating</span>
+            <select name="rating" required>
+              <option value="5 stars">5 stars</option>
+              <option value="4 stars">4 stars</option>
+              <option value="3 stars">3 stars</option>
+              <option value="2 stars">2 stars</option>
+              <option value="1 star">1 star</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Your review</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn sun" type="submit">Send review</button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+    </div>
+  `);
+
+  const modal = document.querySelector('[data-review-modal]');
+  const form = modal.querySelector('[data-review-form]');
+
+  modal.querySelectorAll('[data-review-close]').forEach((button) => {
+    button.addEventListener('click', closeReviewModal);
+  });
+
+  form.addEventListener('submit', (event) => {
+    submitWeb3Form(event, form, {
+      onSuccess: () => form.reset(),
     });
   });
 }
@@ -216,9 +298,32 @@ function closeBookingModal() {
   }
 }
 
+function openReviewModal() {
+  ensureReviewModal();
+
+  const modal = document.querySelector('[data-review-modal]');
+  reviewLastFocus = document.activeElement;
+  modal.hidden = false;
+  document.body.classList.add('modal-open');
+  modal.querySelector('input[name="name"]').focus();
+}
+
+function closeReviewModal() {
+  const modal = document.querySelector('[data-review-modal]');
+  if (!modal || modal.hidden) return;
+
+  modal.hidden = true;
+  document.body.classList.remove('modal-open');
+
+  if (reviewLastFocus && typeof reviewLastFocus.focus === 'function') {
+    reviewLastFocus.focus();
+  }
+}
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     closeBookingModal();
+    closeReviewModal();
   }
 });
 
