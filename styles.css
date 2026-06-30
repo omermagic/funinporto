@@ -236,6 +236,22 @@ h1{
 }
 .hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin:28px 0 15px}
 .micro{margin:0;color:rgba(255,255,255,.78);font-size:.96rem;font-weight:750}
+.booking-reassurance{
+  margin:0;
+  color:rgba(255,255,255,.9);
+  font-size:.95rem;
+  font-weight:900;
+  line-height:1.35;
+}
+.hero-copy > .booking-reassurance{
+  display:inline-flex;
+  max-width:100%;
+  padding:9px 12px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  box-shadow:0 10px 28px rgba(6,19,24,.18);
+}
 .hero-proof{
   display:flex;
   flex-wrap:wrap;
@@ -850,6 +866,12 @@ h1{
   color:rgba(255,255,255,.78);
   font-weight:750;
 }
+.booking-panel .booking-reassurance{
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;
+  background:rgba(6,19,24,.18);
+}
 .booking-panel .btn{
   width:100%;
 }
@@ -934,6 +956,17 @@ body.modal-open{overflow:hidden}
   color:var(--muted);
   font-size:1.02rem;
   font-weight:700;
+}
+.booking-dialog .booking-reassurance{
+  display:inline-flex;
+  margin-top:12px;
+  padding:9px 12px;
+  border:1px solid rgba(18,110,166,.16);
+  border-radius:999px;
+  background:rgba(18,110,166,.08);
+  color:var(--ink);
+  font-size:.92rem;
+  font-weight:900;
 }
 .booking-form{
   display:grid;
@@ -1163,6 +1196,14 @@ body.modal-open{overflow:hidden}
     font-size:.9rem;
     white-space:normal;
     line-height:1.15;
+  }
+  .hero-copy > .booking-reassurance{
+    display:block;
+    margin-top:10px;
+    padding:9px 10px;
+    border-radius:14px;
+    font-size:.78rem;
+    text-align:center;
   }
   .micro{display:none}
   .hero-proof{

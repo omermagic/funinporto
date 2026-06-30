@@ -50,6 +50,7 @@ function ensureBookingModal() {
           <span class="guide-tag">Quick booking</span>
           <h2 id="booking-title">Reserve your free tour</h2>
           <p>Send your details. We will confirm on WhatsApp. No payment now.</p>
+          <p class="booking-reassurance">No payment now · We confirm by WhatsApp · Takes 20 seconds</p>
         </div>
 
         <form
