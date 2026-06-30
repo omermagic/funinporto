@@ -234,6 +234,13 @@ h1{
   line-height:1.55;
   font-weight:620;
 }
+.hero-fit{
+  margin:-10px 0 18px;
+  color:rgba(255,255,255,.92);
+  font-size:1.04rem;
+  font-weight:900;
+  line-height:1.35;
+}
 .hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin:28px 0 15px}
 .micro{margin:0;color:rgba(255,255,255,.78);font-size:.96rem;font-weight:750}
 .booking-reassurance{
@@ -409,34 +416,34 @@ h1{
 .top-review{
   position:relative;
   z-index:2;
+  padding:18px 0;
   background:linear-gradient(90deg,var(--ink),var(--azulejo-dark));
   color:white;
   box-shadow:0 16px 42px rgba(16,34,42,.16);
 }
 .top-review-inner{
   display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  gap:16px;
+  grid-template-columns:auto minmax(0,780px);
+  justify-content:center;
+  gap:18px;
   align-items:center;
-  padding:18px 0;
+  padding:22px 26px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.07);
+  box-shadow:0 18px 46px rgba(6,19,24,.18);
 }
 .top-review .review-stars{
   color:var(--gold);
   white-space:nowrap;
+  font-size:1.1rem;
 }
 .top-review p{
   margin:0;
   color:rgba(255,255,255,.94);
-  font-size:1.02rem;
+  font-size:1.18rem;
   font-weight:850;
   line-height:1.35;
-}
-.top-review span{
-  color:rgba(255,255,255,.72);
-  font-size:.88rem;
-  font-weight:850;
-  line-height:1.25;
-  text-align:right;
 }
 
 /* Sections and grids */

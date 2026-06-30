@@ -2,6 +2,8 @@ const WHATSAPP_PHONE = '351937106777';
 const WHATSAPP_DISPLAY = '+351 937 106 777';
 const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
 const MOBILE_BOOKING_QUERY = '(max-width: 760px)';
+const BOOKING_CONFIRMATION_COPY = "We'll confirm availability and send the meeting point by WhatsApp.";
+const BOOKING_INTRO_COPY = `Choose your date and group size. ${BOOKING_CONFIRMATION_COPY}`;
 let bookingLastFocus = null;
 let reviewLastFocus = null;
 
@@ -59,19 +61,15 @@ function updateBookingFunnelMode(form) {
   }
 
   if (submitButton) {
-    submitButton.textContent = isMobile ? 'Send WhatsApp request' : 'Check availability';
+    submitButton.textContent = 'Send request';
   }
 
   if (intro) {
-    intro.textContent = isMobile
-      ? 'Choose your date and guest count. WhatsApp will open with the message ready.'
-      : "Choose your preferred date and group size. We'll confirm availability and send the meeting point by WhatsApp.";
+    intro.textContent = BOOKING_INTRO_COPY;
   }
 
   if (reassurance) {
-    reassurance.textContent = isMobile
-      ? 'Free booking · WhatsApp opens ready'
-      : 'Free booking · Confirmation by WhatsApp';
+    reassurance.textContent = 'Free booking · Confirmation by WhatsApp';
   }
 }
 
@@ -81,13 +79,12 @@ function ensureBookingModal() {
   document.body.insertAdjacentHTML('beforeend', `
     <div class="booking-modal" data-booking-modal hidden>
       <div class="booking-modal-backdrop" data-booking-close></div>
-      <section class="booking-dialog" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+      <section class="booking-dialog" role="dialog" aria-modal="true" aria-label="Check availability">
         <button class="booking-close" type="button" data-booking-close aria-label="Close booking form">×</button>
 
         <div class="booking-dialog-copy">
-          <span class="guide-tag">Quick booking</span>
-          <h2 id="booking-title">Check availability</h2>
-          <p data-booking-intro>Choose your preferred date and group size. We'll confirm availability and send the meeting point by WhatsApp.</p>
+          <span class="guide-tag">Check availability</span>
+          <p data-booking-intro>${BOOKING_INTRO_COPY}</p>
           <p class="booking-reassurance" data-modal-booking-reassurance>Free booking · Confirmation by WhatsApp</p>
         </div>
 
@@ -96,12 +93,12 @@ function ensureBookingModal() {
           action="https://api.web3forms.com/submit"
           method="POST"
           data-booking-form
-          data-success-message="Thanks — we got your availability request.&#10;&#10;We’ll contact you by WhatsApp to confirm availability, meeting point, and tour time.&#10;&#10;No payment is needed now. The tour is free to join, and tips are appreciated at the end."
+          data-success-message="Thanks — we got your request.&#10;&#10;We'll confirm availability and send the meeting point by WhatsApp.&#10;&#10;No payment today. The tour is free to join, and you can tip at the end based on your experience."
           data-error-message="Something went wrong. Please send us a WhatsApp message instead."
-          data-sending-message="Sending your booking request..."
+          data-sending-message="Sending your request..."
         >
           <input type="hidden" name="access_key" value="${WEB3FORMS_ACCESS_KEY}" />
-          <input type="hidden" name="subject" value="New Fun in Porto booking request" />
+          <input type="hidden" name="subject" value="New Fun in Porto availability request" />
           <input type="hidden" name="from_name" value="Fun in Porto website" />
           <input type="hidden" name="tour" value="Porto walking tour" />
           <input type="hidden" name="message" value="" />
@@ -126,7 +123,7 @@ function ensureBookingModal() {
             </label>
 
             <label>
-              <span>Number of guests</span>
+              <span>Group size</span>
               <input type="number" name="guests" min="1" max="30" value="2" required />
             </label>
           </div>
@@ -136,7 +133,7 @@ function ensureBookingModal() {
           </p>
 
           <div class="form-actions booking-actions">
-            <button class="btn sun booking-submit" type="submit" data-booking-submit>Check availability</button>
+            <button class="btn sun booking-submit" type="submit" data-booking-submit>Send request</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -182,10 +179,8 @@ function ensureBookingModal() {
       `Name: ${name}`,
       isMobile ? '' : `WhatsApp number: ${phone}`,
       `Date: ${date}`,
-      `Number of guests: ${guests}`,
-      isMobile
-        ? 'Please confirm availability, meeting point, and tour time.'
-        : 'Please confirm availability and the meeting point on WhatsApp.',
+      `Group size: ${guests}`,
+      'Please confirm availability and send the meeting point.',
     ].filter(Boolean).join('\n');
 
     if (isMobile) {
