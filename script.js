@@ -48,8 +48,8 @@ function ensureBookingModal() {
 
         <div class="booking-dialog-copy">
           <span class="guide-tag">Quick booking</span>
-          <h2 id="booking-title">Book your free tour</h2>
-          <p>Send your details. We will confirm on WhatsApp.</p>
+          <h2 id="booking-title">Reserve your free tour</h2>
+          <p>Send your details. We will confirm on WhatsApp. No payment now.</p>
         </div>
 
         <form
@@ -97,7 +97,7 @@ function ensureBookingModal() {
           </p>
 
           <div class="form-actions booking-actions">
-            <button class="btn sun booking-submit" type="submit">Book a free tour</button>
+            <button class="btn sun booking-submit" type="submit">Reserve your free tour</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </div>
         </form>
