@@ -174,7 +174,7 @@ function ensureBookingModal() {
 
     const message = [
       isMobile
-        ? 'Hi Fun in Porto! I would like to check availability for a free walking tour.'
+        ? 'Hi, I would like to join the Fun in Porto free walking tour.'
         : 'New availability request for Fun in Porto walking tour.',
       `Name: ${name}`,
       isMobile ? '' : `WhatsApp number: ${phone}`,
