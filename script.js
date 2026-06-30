@@ -6,4 +6,7 @@ function openWhatsApp(lang) {
 
   window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
 }
-L
+
+document.querySelectorAll('[data-current-year]').forEach((element) => {
+  element.textContent = new Date().getFullYear();
+});
