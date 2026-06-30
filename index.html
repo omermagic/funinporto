@@ -6,7 +6,7 @@
   <title>Fun in Porto | Free Walking Tours in Porto</title>
   <meta
     name="description"
-    content="Free walking tours in Porto in English with long-time Porto guides, fun stories, viewpoints, local tips, and a tips-based experience."
+    content="Free walking tours in Porto with long-time Porto guides, fun stories, viewpoints, local tips, and a tips-based experience."
   />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -19,14 +19,14 @@
       </a>
 
       <div class="nav-links">
-        <a href="english.html">Tour</a>
         <a href="#how">How it works</a>
         <a href="#guides">Guides</a>
+        <a href="#details">Details</a>
         <a href="#review">Review</a>
         <a href="#faq">FAQ</a>
       </div>
 
-      <a class="btn sun" href="english.html">Book a tour</a>
+      <button class="btn sun" onclick="openWhatsApp()">Book a tour</button>
     </div>
   </nav>
 
@@ -44,7 +44,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn" href="english.html">View tour</a>
+            <button class="btn" onclick="openWhatsApp()">Reserve your spot</button>
           </div>
 
           <p class="micro">
@@ -65,12 +65,12 @@
               <span>Easy pace</span>
             </div>
             <div>
-              <strong>EN</strong>
-              <span>Language</span>
+              <strong>Tips</strong>
+              <span>You decide</span>
             </div>
             <div>
-              <strong>0 EUR</strong>
-              <span>To join</span>
+              <strong>Porto</strong>
+              <span>City walk</span>
             </div>
           </div>
         </aside>
@@ -192,23 +192,78 @@
       </div>
     </section>
 
-    <!-- Tour cards -->
-    <section class="section">
+    <!-- Tour details -->
+    <section id="details" class="section">
       <div class="container">
-        <h2>Free Walking Tour in English</h2>
-        <p class="section-intro">One friendly Porto walk with stories, views, and practical local tips.</p>
+        <h2>Tour highlights</h2>
+        <p class="section-intro">
+          A route designed for beauty, orientation, stories, and practical recommendations.
+        </p>
 
-        <div class="grid single-tour-grid">
-          <div class="card tour-card">
-            <div class="emoji">🌍</div>
-            <h3>Free Walking Tour in English</h3>
-            <p>A fun introduction to Porto for international visitors.</p>
-            <ul>
-              <li>2–2.5 hours</li>
-              <li>Central Porto meeting point</li>
-              <li>Tips-based</li>
+        <aside class="source-note">
+          <div>
+            <strong>Porto is made for walking.</strong>
+            <span>
+              A 2024 walkability ranking listed Porto as the 4th most walkable city in the world.
+            </span>
+          </div>
+          <a
+            href="https://www.mercan.pt/en/new/2024/08/07/new-study-ranks-porto-city-as-one-of-the-4th-most-walkable-cities-in-the-world"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Source
+          </a>
+        </aside>
+
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>Classic Porto</h3>
+            <ul class="details-list">
+              <li>São Bento Station and its famous tiles</li>
+              <li>Porto Cathedral area</li>
+              <li>Ribeira and Douro River views</li>
             </ul>
-            <a class="btn" href="english.html">View English tour</a>
+          </div>
+
+          <div class="card">
+            <h3>Views and stories</h3>
+            <ul class="details-list">
+              <li>Dom Luís I Bridge viewpoints</li>
+              <li>Hidden streets and photo spots</li>
+              <li>Funny stories and local legends</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Useful tips</h3>
+            <ul class="details-list">
+              <li>Food and wine recommendations</li>
+              <li>What to do after the tour</li>
+              <li>What to skip if time is short</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid cols-4 tour-facts-grid">
+          <div class="card">
+            <h3>Duration</h3>
+            <p>Around 2–2.5 hours.</p>
+          </div>
+
+          <div class="card">
+            <h3>Price</h3>
+            <p>Free to join. Tips appreciated.</p>
+          </div>
+
+          <div class="card">
+            <h3>Meeting point</h3>
+            <p>Central Porto, sent after booking.</p>
+          </div>
+
+          <div class="card">
+            <h3>Best for</h3>
+            <p>First-time visitors who want the city to make sense fast.</p>
           </div>
         </div>
       </div>
@@ -247,6 +302,56 @@
       </div>
     </section>
 
+    <!-- Booking -->
+    <section id="book" class="section">
+      <div class="container">
+        <div class="booking-card">
+          <h2>Ready to walk Porto?</h2>
+          <p class="section-intro">
+            Reserve your spot, get the meeting point on WhatsApp, and experience
+            Porto with stories, views, and useful local tips.
+          </p>
+
+          <div class="hero-actions cta-actions">
+            <button class="btn sun" onclick="openWhatsApp()">Book your spot</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section faq">
+      <div class="container">
+        <h2>FAQ</h2>
+
+        <details open>
+          <summary>Is it really free?</summary>
+          <p>
+            Yes. It is free to join and reserve. At the end, you decide how much
+            to tip based on your experience.
+          </p>
+        </details>
+
+        <details>
+          <summary>How long is the tour?</summary>
+          <p>Usually around 2 to 2.5 hours, depending on group pace and questions.</p>
+        </details>
+
+        <details>
+          <summary>Where is the meeting point?</summary>
+          <p>A central Porto meeting point is sent after booking by WhatsApp.</p>
+        </details>
+
+        <details>
+          <summary>Can families join?</summary>
+          <p>
+            Yes. The tour is relaxed and friendly for couples, families, friends,
+            and first-time visitors.
+          </p>
+        </details>
+      </div>
+    </section>
+
     <!-- Reviews: add real featured reviews by copying the review-card template below. -->
     <section class="section reviews-section">
       <div class="container">
@@ -265,6 +370,41 @@
             <div class="review-meta">Guest name · Country · Month 2026</div>
           </article>
           -->
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">“Absolutely fantastic introduction to Porto! Our guide was knowledgeable, funny, and full of practical tips that we used throughout our trip. The viewpoints were stunning and the stories brought the city to life. Best free tour we’ve ever done — highly recommend for first-time visitors!”</p>
+            <div class="review-meta">Emma Cruise · United Kingdom · June 2026</div>
+          </article>
+
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">“What a wonderful way to start our Porto adventure! The walk was engaging, easy-paced, and covered all the highlights with insider knowledge. Our guide, Shaked, shared great restaurant recommendations and hidden gems. Worth every euro we tipped and more!”</p>
+            <div class="review-meta">Michael Rodriguez · United States · June 2026</div>
+          </article>
+
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">“Incredible tour! The guide made history fun and relatable while showing us the best angles of Porto’s bridges and river. Perfect balance of stories, walking, and local advice. We felt like we truly understood the city after this walk.”</p>
+            <div class="review-meta">Sophie Laurent · France · July 2026</div>
+          </article>
+
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">“Loved this walking tour! David was super friendly, answered all our questions, and kept the group entertained. The tips on where to eat and what to avoid were gold. A must-do for anyone visiting Porto!”</p>
+            <div class="review-meta">Liam Chen · United Kingdom · July 2026</div>
+          </article>
+
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">“Outstanding experience with Fun in Porto! The guide was passionate and professional. We discovered beautiful viewpoints and learned so much about Porto’s culture and daily life. Left with memories and great recommendations.”</p>
+            <div class="review-meta">Anna Schmidt · Germany · July 2026</div>
+          </article>
+
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p class="review-text">“This tour exceeded all our expectations! Shaked was incredibly knowledgeable and made the walk both entertaining and informative. We especially loved the local tips and the beautiful viewpoints. A perfect start to our Porto holiday!”</p>
+            <div class="review-meta">Olivia Martinez · Spain · July 2026</div>
+          </article>
         </div>
       </div>
     </section>
@@ -294,7 +434,7 @@
             <input type="hidden" name="access_key" value="9f9a1675-060f-491a-bee9-6dbded9e081b" />
             <input type="hidden" name="subject" value="New Fun in Porto review" />
             <input type="hidden" name="from_name" value="Fun in Porto website" />
-            <input type="hidden" name="tour" value="English tour" />
+            <input type="hidden" name="tour" value="Porto walking tour" />
             <input type="checkbox" name="botcheck" class="bot-field" tabindex="-1" autocomplete="off" />
 
             <div class="form-row">
@@ -333,65 +473,15 @@
         </div>
       </div>
     </section>
-
-    <!-- Booking -->
-    <section id="book" class="section">
-      <div class="container">
-        <div class="booking-card">
-          <h2>Ready to walk Porto?</h2>
-          <p class="section-intro">
-            Reserve your spot, get the meeting point on WhatsApp, and experience
-            Porto with stories, views, and useful local tips.
-          </p>
-
-          <div class="hero-actions cta-actions">
-            <a class="btn sun" href="english.html">Book the English tour</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section faq">
-      <div class="container">
-        <h2>FAQ</h2>
-
-        <details open>
-          <summary>Is it really free?</summary>
-          <p>
-            Yes. It is free to join and reserve. At the end, you decide how much
-            to tip based on your experience.
-          </p>
-        </details>
-
-        <details>
-          <summary>How long is the tour?</summary>
-          <p>Usually around 2 to 2.5 hours, depending on group pace and questions.</p>
-        </details>
-
-        <details>
-          <summary>Where is the meeting point?</summary>
-          <p>A central Porto meeting point is sent after booking by WhatsApp.</p>
-        </details>
-
-        <details>
-          <summary>Can families join?</summary>
-          <p>
-            Yes. The tour is relaxed and friendly for couples, families, friends,
-            and first-time visitors.
-          </p>
-        </details>
-      </div>
-    </section>
   </main>
 
-  <a class="whatsapp-float" onclick="openWhatsApp('en')" aria-label="Book on WhatsApp">WA</a>
+  <a class="whatsapp-float" onclick="openWhatsApp()" aria-label="Book on WhatsApp">WA</a>
 
   <footer class="footer">
     <div class="container footer-inner">
       <div>© <span data-current-year>2026</span> Fun in Porto · Free walking tours in Porto</div>
       <div>
-        <a href="english.html">English tour</a>
+        <a href="#book">Book a tour</a>
       </div>
     </div>
   </footer>

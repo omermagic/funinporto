@@ -272,7 +272,7 @@ h1{
 .grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.single-tour-grid{grid-template-columns:minmax(0,560px)}
+.tour-facts-grid{margin-top:20px}
 
 /* Cards */
 .card{
@@ -308,11 +308,8 @@ h1{
   font-weight:950;
   margin-bottom:14px;
 }
-.tour-card{display:flex;flex-direction:column;gap:17px;min-height:280px}
-.tour-card .emoji{font-size:2.1rem;line-height:1}
-.tour-card .btn{margin-top:auto;align-self:flex-start}
-.tour-card ul,.details-list{margin:0;padding-left:20px;color:var(--muted);font-weight:700}
-.tour-card li,.details-list li{margin:7px 0}
+.details-list{margin:0;padding-left:20px;color:var(--muted);font-weight:700}
+.details-list li{margin:7px 0}
 
 /* Full-width feature bands */
 .band{
@@ -431,8 +428,41 @@ h1{
   font-weight:700;
   line-height:1.45;
 }
-.rtl .guide-panel:before{inset:0 0 0 auto}
-
+.source-note{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  max-width:900px;
+  margin:0 0 24px;
+  padding:16px 18px;
+  border:1px solid rgba(18,110,166,.18);
+  border-left:5px solid var(--azulejo);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.84);
+  box-shadow:0 12px 30px rgba(16,34,42,.07);
+}
+.source-note strong{
+  display:block;
+  color:var(--ink);
+  font-size:1.02rem;
+  line-height:1.25;
+}
+.source-note span{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-weight:700;
+  line-height:1.45;
+}
+.source-note a{
+  flex:0 0 auto;
+  color:var(--azulejo-dark);
+  font-size:.88rem;
+  font-weight:950;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
 .quote{margin-bottom:8px;color:var(--ink);font-size:1.18rem;font-weight:950;line-height:1.25}
 .proof-card{
   background:linear-gradient(180deg,rgba(18,110,166,.08),rgba(255,255,255,.96));
@@ -555,6 +585,104 @@ h1{
 .booking-card .section-intro{color:rgba(255,255,255,.84)}
 .booking-card .hero-actions{justify-content:center;margin-bottom:0}
 
+/* Booking modal */
+body.modal-open{overflow:hidden}
+.booking-modal[hidden]{display:none}
+.booking-modal{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  display:grid;
+  place-items:center;
+  padding:22px;
+}
+.booking-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(6,19,24,.68);
+  backdrop-filter:blur(10px);
+}
+.booking-dialog{
+  position:relative;
+  z-index:1;
+  width:min(760px,100%);
+  max-height:calc(100dvh - 44px);
+  overflow:auto;
+  padding:34px;
+  border:1px solid rgba(255,255,255,.66);
+  border-radius:16px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.98),rgba(239,180,71,.13) 48%,rgba(31,145,167,.12)),
+    var(--card);
+  box-shadow:0 34px 90px rgba(6,19,24,.38);
+}
+.booking-dialog:before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:6px;
+  background:linear-gradient(90deg,var(--azulejo),var(--gold),var(--terracotta),var(--vine));
+}
+.booking-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background:rgba(16,34,42,.08);
+  color:var(--ink);
+  font-size:1.45rem;
+  line-height:1;
+  font-weight:900;
+}
+.booking-close:hover{background:rgba(16,34,42,.13)}
+.booking-dialog-copy{max-width:590px;margin-bottom:24px}
+.booking-dialog h2{
+  margin:0 0 10px;
+  color:var(--ink);
+  font-size:2.25rem;
+  line-height:1.05;
+}
+.booking-dialog p{
+  margin:0;
+  color:var(--muted);
+  font-size:1.02rem;
+  font-weight:700;
+}
+.booking-form{
+  display:grid;
+  gap:16px;
+}
+.booking-form label{
+  display:grid;
+  gap:7px;
+  color:var(--ink);
+  font-weight:900;
+}
+.booking-form label span{font-size:.9rem}
+.booking-form input{
+  width:100%;
+  border:1px solid rgba(16,34,42,.16);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.95);
+  color:var(--ink);
+  font:inherit;
+  font-weight:650;
+  line-height:1.35;
+  padding:12px 13px;
+  box-shadow:0 8px 20px rgba(16,34,42,.05);
+}
+.booking-form input:focus{
+  outline:3px solid rgba(239,180,71,.54);
+  border-color:rgba(18,110,166,.4);
+}
+.booking-submit{justify-self:start;margin-top:4px}
+
 /* FAQ */
 .faq details{
   background:rgba(255,255,255,.94);
@@ -587,17 +715,6 @@ h1{
   font-weight:950;
   box-shadow:0 16px 34px rgba(16,34,42,.26);
 }
-
-/* Hebrew / RTL */
-.rtl{direction:rtl;text-align:right}
-.rtl .hero{
-  background-image:
-    linear-gradient(270deg,rgba(6,19,24,.94) 0%,rgba(6,19,24,.78) 39%,rgba(6,19,24,.38) 70%,rgba(6,19,24,.12) 100%),
-    url("assets/porto-hero.jpg");
-}
-.rtl .hero-shell,.rtl .grid{direction:rtl}
-.rtl .details-list,.rtl .tour-card ul{padding-left:0;padding-right:20px}
-.rtl .nav-links a:after{transform-origin:right}
 
 /* Motion */
 @media (prefers-reduced-motion:no-preference){
@@ -663,11 +780,6 @@ h1{
       linear-gradient(180deg,rgba(6,19,24,.18) 0%,rgba(6,19,24,.72) 44%,rgba(6,19,24,.92) 100%),
       url("assets/porto-hero.jpg");
     background-position:center top;
-  }
-  .rtl .hero{
-    background-image:
-      linear-gradient(180deg,rgba(6,19,24,.18) 0%,rgba(6,19,24,.72) 44%,rgba(6,19,24,.92) 100%),
-      url("assets/porto-hero.jpg");
   }
   .hero:after{height:5px}
   .hero-shell{display:block}
@@ -756,6 +868,14 @@ h1{
     padding:26px 22px;
     border-radius:16px;
   }
+  .source-note{
+    display:block;
+    padding:15px 16px;
+  }
+  .source-note a{
+    display:inline-block;
+    margin-top:10px;
+  }
   .form-row{grid-template-columns:1fr}
   .form-actions{
     display:grid;
@@ -767,7 +887,6 @@ h1{
     height:6px;
     inset:0 0 auto 0;
   }
-  .rtl .guide-panel:before{inset:0 0 auto 0}
   .guide-tag{font-size:.72rem}
   .guide-note{font-size:.98rem}
   .ask-chips{gap:8px;margin-top:18px}
@@ -786,6 +905,24 @@ h1{
     padding:54px 0;
     background-position:center;
   }
+  .booking-modal{
+    align-items:end;
+    justify-items:start;
+    padding:12px;
+  }
+  .booking-dialog{
+    width:min(358px,calc(100vw - 32px));
+    max-height:calc(100dvh - 24px);
+    padding:28px 20px 22px;
+    border-radius:18px 18px 12px 12px;
+  }
+  .booking-dialog h2{font-size:1.78rem}
+  .booking-dialog-copy{padding-right:42px}
+  .booking-submit{
+    width:100%;
+    justify-self:stretch;
+  }
+  .modal-open .whatsapp-float{display:none}
   .footer{padding-bottom:108px}
   .whatsapp-float{
     left:14px;
@@ -802,7 +939,6 @@ h1{
     font-size:1rem;
     font-weight:950;
   }
-  .rtl .whatsapp-float:before{content:"הזמנה בוואטסאפ"}
 }
 
 @media(max-width:520px){
@@ -835,12 +971,4 @@ h1{
   .quick-facts div{border-top:0}
   .footer-inner{display:block}
   .footer-inner div+div{margin-top:12px}
-  .rtl .container{margin-left:16px;margin-right:auto}
-  .rtl .nav-inner{direction:ltr;justify-content:flex-start}
-  .rtl .hero-shell,.rtl .grid{direction:rtl}
-  .rtl .hero-copy,.rtl .card,.rtl .section h2,.rtl .section-intro{direction:rtl;text-align:right}
-  .rtl .hero-copy,.rtl .hero-actions{margin-left:0;margin-right:auto}
-  .rtl .section h2,.rtl .section-intro,.rtl .grid{width:auto;max-width:100%;margin-left:0;margin-right:0}
-  .rtl .booking-card{text-align:center}
-  .rtl .booking-card h2,.rtl .booking-card .section-intro{text-align:center}
 }
