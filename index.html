@@ -35,28 +35,35 @@
     <section class="hero">
       <div class="container hero-shell">
         <div class="hero-copy">
-          <div class="kicker">Free to join · Tips appreciated · Porto made fun</div>
-          <h1>Fun in Porto starts with a walk.</h1>
+          <div class="kicker">Free walking tour · Porto stories · Local tips</div>
+          <h1>See Porto like a friend showed you around.</h1>
           <p class="lead">
-            Join a free walking tour with guides who have lived in Porto for
-            years. Ask anything, discover the best viewpoints, and leave with
-            tips you will actually use.
+            A fun, tips-based walk through viewpoints, tiled streets, river
+            stories, food ideas, and the kind of local advice that makes the
+            rest of your trip easier.
           </p>
 
           <div class="hero-actions">
-            <button class="btn" onclick="openWhatsApp()">Reserve your spot</button>
+            <button class="btn" onclick="openWhatsApp()">Reserve a spot</button>
           </div>
 
-          <p class="micro">
-            No fixed price. No pressure. Enjoy the tour, then decide what it was worth to you.
-          </p>
+          <div class="hero-proof" aria-label="Tour trust signals">
+            <span>★★★★★ Guest-loved</span>
+            <span>2-2.5 hours</span>
+            <span>Tips-based</span>
+          </div>
         </div>
 
-        <aside class="hero-highlights" aria-label="Tour snapshot">
+        <aside class="hero-highlights tour-pass" aria-label="Tour snapshot">
           <div class="snapshot-main">
             <span class="eyebrow">First day in Porto</span>
-            <strong>Guides you can ask</strong>
-            <span>Get oriented fast, then explore with confidence.</span>
+            <strong>Walk first. Explore smarter.</strong>
+            <span>Get oriented fast, then keep using the tips all trip.</span>
+          </div>
+
+          <div class="hero-mini-review">
+            <span>Recent guest note</span>
+            <p>“The perfect start to Porto: beautiful views, useful tips, and a guide we could actually ask anything.”</p>
           </div>
 
           <div class="quick-facts">
@@ -77,35 +84,52 @@
       </div>
     </section>
 
+    <section class="trust-strip" aria-label="Why travelers book Fun in Porto">
+      <div class="container trust-inner">
+        <div>
+          <strong>Free to join</strong>
+          <span>Reserve now, tip what it was worth at the end.</span>
+        </div>
+        <div>
+          <strong>Human confirmation</strong>
+          <span>Send your phone and we confirm by WhatsApp.</span>
+        </div>
+        <div>
+          <strong>First-day friendly</strong>
+          <span>Understand Porto before you spend the rest of your trip exploring.</span>
+        </div>
+      </div>
+    </section>
+
     <!-- How it works -->
-    <section id="how" class="section">
+    <section id="how" class="section steps-section">
       <div class="container">
-        <h2>How it works</h2>
+        <h2>Book fast. Walk easy.</h2>
         <p class="section-intro">
           The best free walking tours make everything simple: reserve, meet,
           enjoy, and tip based on your experience.
         </p>
 
-        <div class="grid cols-4">
-          <a class="card card-link" href="#book" onclick="event.preventDefault(); openWhatsApp();" aria-label="Send a booking request">
+        <div class="grid cols-4 steps-grid">
+          <a class="card card-link step-card" href="#book" onclick="event.preventDefault(); openWhatsApp();" aria-label="Send a booking request">
             <div class="num">1</div>
             <h3>Send a request</h3>
             <p>Tell us your date, WhatsApp number, and number of people.</p>
           </a>
 
-          <div class="card">
+          <div class="card step-card">
             <div class="num">2</div>
             <h3>Get meeting details</h3>
             <p>We reply with availability and the central meeting point.</p>
           </div>
 
-          <div class="card">
+          <div class="card step-card">
             <div class="num">3</div>
             <h3>Walk and discover</h3>
             <p>Stories, viewpoints, history, jokes, and tips for the rest of your trip.</p>
           </div>
 
-          <div class="card">
+          <div class="card step-card">
             <div class="num">4</div>
             <h3>Tip what you feel</h3>
             <p>At the end, you decide the value of the experience.</p>
@@ -117,15 +141,18 @@
     <!-- Brand promise -->
     <section class="section">
       <div class="container">
-        <div class="band">
-          <h2>Not a boring history lecture.</h2>
-          <p class="section-intro">
-            This is Porto with personality: the river, the hills, the tiles, the
-            dramatic bridges, the food, the wine, the football energy, and the
-            little stories that make the city unforgettable.
-          </p>
+        <div class="band story-band">
+          <div class="story-band-copy">
+            <span class="guide-tag">The mood</span>
+            <h2>Not a boring history lecture.</h2>
+            <p class="section-intro">
+              This is Porto with personality: the river, the hills, the tiles, the
+              dramatic bridges, the food, the wine, the football energy, and the
+              little stories that make the city unforgettable.
+            </p>
+          </div>
 
-          <div class="grid cols-3">
+          <div class="grid cols-3 story-grid">
             <div class="card">
               <h3>First-day perfect</h3>
               <p>Understand where you are and where to return later.</p>
@@ -173,6 +200,12 @@
           </div>
 
           <div class="guide-points">
+            <div class="guide-spotlight">
+              <span>Ask during the walk</span>
+              <strong>Where should we eat tonight?</strong>
+              <p>Bring your real trip questions. The best part of the tour is leaving with useful decisions already made.</p>
+            </div>
+
             <div class="guide-point">
               <strong>Years of real Porto life</strong>
               <span>Advice shaped by living here, not by repeating a script.</span>
@@ -216,8 +249,8 @@
           </a>
         </aside>
 
-        <div class="grid cols-3">
-          <div class="card">
+        <div class="grid cols-3 route-grid">
+          <div class="card route-card">
             <h3>Classic Porto</h3>
             <ul class="details-list">
               <li>São Bento Station and its famous tiles</li>
@@ -226,42 +259,42 @@
             </ul>
           </div>
 
-          <div class="card">
-            <h3>Views and stories</h3>
+          <div class="card route-card">
+            <h3>Hidden Porto</h3>
             <ul class="details-list">
               <li>Dom Luís I Bridge viewpoints</li>
               <li>Hidden streets and photo spots</li>
-              <li>Funny stories and local legends</li>
+              <li>Quiet corners behind the postcard views</li>
             </ul>
           </div>
 
-          <div class="card">
-            <h3>Useful tips</h3>
+          <div class="card route-card">
+            <h3>Secret Porto</h3>
             <ul class="details-list">
               <li>Food and wine recommendations</li>
               <li>What to do after the tour</li>
-              <li>What to skip if time is short</li>
+              <li>Local stories, shortcuts, and what to skip</li>
             </ul>
           </div>
         </div>
 
         <div class="grid cols-4 tour-facts-grid">
-          <div class="card">
+          <div class="card fact-card">
             <h3>Duration</h3>
             <p>Around 2–2.5 hours.</p>
           </div>
 
-          <div class="card">
+          <div class="card fact-card">
             <h3>Price</h3>
             <p>Free to join. Tips appreciated.</p>
           </div>
 
-          <div class="card">
+          <div class="card fact-card">
             <h3>Meeting point</h3>
             <p>Central Porto, sent after booking.</p>
           </div>
 
-          <div class="card">
+          <div class="card fact-card">
             <h3>Best for</h3>
             <p>First-time visitors who want the city to make sense fast.</p>
           </div>
@@ -306,19 +339,25 @@
     <section id="book" class="section">
       <div class="container">
         <div class="booking-card">
-          <h2>Ready to walk Porto?</h2>
-          <p class="section-intro">
-            Send a quick booking request with your WhatsApp number. We will
-            confirm availability and the meeting point there.
-          </p>
+          <div class="booking-card-inner">
+            <div class="booking-copy">
+              <span class="guide-tag">Quick booking</span>
+              <h2>Ready to walk Porto?</h2>
+              <p class="section-intro">
+                Send a quick request with your WhatsApp number. We will confirm
+                availability, time, and the central meeting point there.
+              </p>
+            </div>
 
-          <div class="hero-actions cta-actions">
-            <button class="btn sun" onclick="openWhatsApp()">Book your spot</button>
+            <div class="booking-panel">
+              <strong>Reserve in under a minute</strong>
+              <span>Name, phone, date, guest count. That is it.</span>
+              <button class="btn sun" onclick="openWhatsApp()">Book your spot</button>
+              <p class="booking-phone">
+                Prefer WhatsApp? <a href="https://wa.me/351937106777" target="_blank" rel="noopener">+351 937 106 777</a>
+              </p>
+            </div>
           </div>
-
-          <p class="booking-phone">
-            Prefer WhatsApp? <a href="https://wa.me/351937106777" target="_blank" rel="noopener">+351 937 106 777</a>
-          </p>
         </div>
       </div>
     </section>

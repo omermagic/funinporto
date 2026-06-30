@@ -1,8 +1,9 @@
 :root{
   --ink:#10222a;
   --muted:#53616b;
-  --paper:#f6f7f2;
+  --paper:#f3f6f4;
   --card:#ffffff;
+  --mist:#e9f4f4;
   --azulejo:#126ea6;
   --azulejo-dark:#0a425f;
   --terracotta:#b65234;
@@ -27,8 +28,8 @@ body{
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:
     linear-gradient(90deg,rgba(18,110,166,.045) 1px,transparent 1px),
-    linear-gradient(180deg,rgba(182,82,52,.04) 1px,transparent 1px),
-    var(--paper);
+    linear-gradient(180deg,rgba(182,82,52,.035) 1px,transparent 1px),
+    linear-gradient(135deg,#f3f6f4 0%,#fff8ed 46%,#edf7f8 100%);
   background-size:48px 48px;
   color:var(--ink);
   line-height:1.6;
@@ -154,15 +155,27 @@ a{color:inherit;text-decoration:none}
   position:relative;
   overflow:hidden;
   color:white;
-  min-height:640px;
+  min-height:min(760px,calc(100svh - 71px));
   display:flex;
   align-items:center;
-  padding:74px 0 54px;
+  padding:92px 0 68px;
   background-image:
-    linear-gradient(90deg,rgba(6,19,24,.94) 0%,rgba(6,19,24,.78) 39%,rgba(6,19,24,.38) 70%,rgba(6,19,24,.12) 100%),
+    linear-gradient(90deg,rgba(6,19,24,.96) 0%,rgba(6,19,24,.78) 42%,rgba(6,19,24,.38) 70%,rgba(6,19,24,.12) 100%),
+    linear-gradient(180deg,rgba(18,110,166,.28),rgba(182,82,52,.2)),
     url("assets/porto-hero.jpg");
   background-size:cover;
   background-position:center;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;
+  opacity:.44;
+  pointer-events:none;
 }
 .hero:after{
   content:"";
@@ -177,9 +190,9 @@ a{color:inherit;text-decoration:none}
   position:relative;
   z-index:1;
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(280px,360px);
-  gap:44px;
-  align-items:end;
+  grid-template-columns:minmax(0,1.16fr) minmax(320px,.84fr);
+  gap:56px;
+  align-items:center;
 }
 .hero-copy,.hero-highlights{min-width:0}
 .hero-copy{
@@ -205,33 +218,55 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,p{overflow-wrap:normal;word-break:normal}
 h1{
   margin:0 0 20px;
-  max-width:880px;
+  max-width:920px;
   color:white;
-  font-size:4.55rem;
-  line-height:1.1;
+  font-size:4.9rem;
+  line-height:1.04;
   letter-spacing:0;
   padding-bottom:.08em;
   text-wrap:balance;
 }
 .lead{
-  max-width:690px;
+  max-width:720px;
   margin:0 0 26px;
   color:rgba(255,255,255,.88);
-  font-size:1.24rem;
+  font-size:1.22rem;
   line-height:1.55;
   font-weight:620;
 }
 .hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin:28px 0 15px}
 .micro{margin:0;color:rgba(255,255,255,.78);font-size:.96rem;font-weight:750}
+.hero-proof{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.hero-proof span{
+  display:inline-flex;
+  min-height:36px;
+  align-items:center;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  color:rgba(255,255,255,.9);
+  font-size:.88rem;
+  font-weight:900;
+  backdrop-filter:blur(12px);
+}
 .hero-highlights{
   border:1px solid rgba(255,255,255,.26);
   border-radius:var(--radius);
-  background:rgba(8,27,34,.52);
+  background:linear-gradient(180deg,rgba(8,27,34,.72),rgba(8,27,34,.48));
   backdrop-filter:blur(18px);
   box-shadow:var(--shadow);
   overflow:hidden;
 }
-.snapshot-main{padding:22px}
+.tour-pass{
+  transform:translateY(18px);
+}
+.snapshot-main{padding:26px}
 .eyebrow{
   display:block;
   margin-bottom:7px;
@@ -242,6 +277,24 @@ h1{
 }
 .snapshot-main strong{display:block;color:white;font-size:1.42rem;line-height:1.15}
 .snapshot-main span:last-child{display:block;margin-top:9px;color:rgba(255,255,255,.8);font-weight:700}
+.hero-mini-review{
+  padding:0 26px 24px;
+}
+.hero-mini-review span{
+  display:block;
+  margin-bottom:8px;
+  color:var(--gold);
+  font-size:.8rem;
+  font-weight:950;
+  text-transform:uppercase;
+}
+.hero-mini-review p{
+  margin:0;
+  color:rgba(255,255,255,.9);
+  font-size:1.02rem;
+  font-weight:800;
+  line-height:1.45;
+}
 .quick-facts{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -252,6 +305,39 @@ h1{
 .quick-facts div:last-child{border-right:0}
 .quick-facts strong{display:block;color:white;font-size:1.12rem;line-height:1.1}
 .quick-facts span{display:block;margin-top:4px;color:rgba(255,255,255,.72);font-size:.78rem;font-weight:800}
+
+/* Trust strip */
+.trust-strip{
+  position:relative;
+  z-index:2;
+  background:var(--ink);
+  color:white;
+  box-shadow:0 18px 50px rgba(16,34,42,.2);
+}
+.trust-inner{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  background:rgba(255,255,255,.14);
+}
+.trust-inner div{
+  padding:22px 24px;
+  background:linear-gradient(135deg,rgba(18,110,166,.24),rgba(255,255,255,.04));
+}
+.trust-inner strong{
+  display:block;
+  margin-bottom:4px;
+  color:white;
+  font-size:1.02rem;
+  line-height:1.2;
+}
+.trust-inner span{
+  display:block;
+  color:rgba(255,255,255,.74);
+  font-size:.94rem;
+  font-weight:700;
+  line-height:1.4;
+}
 
 /* Sections and grids */
 .section{padding:76px 0}
@@ -278,6 +364,30 @@ h1{
 .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .tour-facts-grid{margin-top:20px}
+
+.steps-section{
+  background:linear-gradient(180deg,rgba(255,255,255,.66),rgba(233,244,244,.44));
+}
+.steps-grid{
+  position:relative;
+  gap:0;
+  border:1px solid rgba(16,34,42,.1);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 20px 54px rgba(16,34,42,.09);
+}
+.steps-grid .step-card{
+  border:0;
+  border-right:1px solid rgba(16,34,42,.1);
+  border-radius:0;
+  box-shadow:none;
+  background:rgba(255,255,255,.88);
+}
+.steps-grid .step-card:last-child{border-right:0}
+.steps-grid .step-card:hover{
+  transform:none;
+  background:white;
+}
 
 /* Cards */
 .card{
@@ -330,9 +440,9 @@ h1{
 .band{
   width:100vw;
   margin:8px calc(50% - 50vw);
-  padding:72px max(4vw,24px);
+  padding:78px max(4vw,24px);
   background:
-    linear-gradient(105deg,rgba(10,66,95,.98),rgba(31,145,167,.92) 52%,rgba(182,82,52,.95)),
+    linear-gradient(105deg,rgba(10,66,95,.98),rgba(31,145,167,.9) 52%,rgba(182,82,52,.92)),
     url("assets/porto-hero.jpg");
   background-size:cover;
   background-position:center;
@@ -344,16 +454,29 @@ h1{
   margin-left:auto;
   margin-right:auto;
 }
+.story-band{
+  display:grid;
+  gap:30px;
+}
+.story-band-copy{
+  width:min(1120px,92%);
+  margin:0 auto;
+}
+.story-band .guide-tag{
+  background:rgba(255,255,255,.14);
+  color:white;
+}
 .band h2{color:white}
 .band .section-intro{color:rgba(255,255,255,.84)}
 .band .card{
-  background:rgba(255,255,255,.11);
+  background:rgba(255,255,255,.13);
   border-color:rgba(255,255,255,.22);
   box-shadow:none;
   backdrop-filter:blur(10px);
 }
 .band .card h3{color:white}
 .band .card p{color:rgba(255,255,255,.82)}
+.story-grid .card:before{background:linear-gradient(90deg,var(--gold),var(--terracotta))}
 
 /* Guides */
 .guides-section{padding-top:70px}
@@ -423,6 +546,46 @@ h1{
   display:grid;
   gap:12px;
 }
+.guide-spotlight{
+  position:relative;
+  overflow:hidden;
+  padding:22px;
+  border-radius:var(--radius);
+  background:
+    linear-gradient(135deg,rgba(16,34,42,.9),rgba(10,66,95,.84)),
+    url("assets/porto-hero.jpg");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  box-shadow:0 18px 42px rgba(16,34,42,.18);
+}
+.guide-spotlight:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-top:5px solid var(--gold);
+}
+.guide-spotlight > *{position:relative}
+.guide-spotlight span{
+  display:block;
+  margin-bottom:6px;
+  color:var(--gold);
+  font-size:.78rem;
+  font-weight:950;
+  text-transform:uppercase;
+}
+.guide-spotlight strong{
+  display:block;
+  color:white;
+  font-size:1.38rem;
+  line-height:1.12;
+}
+.guide-spotlight p{
+  margin:10px 0 0;
+  color:rgba(255,255,255,.82);
+  font-weight:750;
+  line-height:1.45;
+}
 .guide-point{
   padding:18px 18px 18px 20px;
   border:1px solid rgba(16,34,42,.1);
@@ -478,6 +641,25 @@ h1{
   text-decoration:underline;
   text-underline-offset:3px;
 }
+.route-grid{
+  align-items:stretch;
+}
+.route-card{
+  min-height:100%;
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(233,244,244,.58));
+}
+.route-card:nth-child(2){
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(239,180,71,.16));
+}
+.route-card:nth-child(3){
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(31,145,167,.14));
+}
+.fact-card{
+  padding:18px 20px;
+  box-shadow:none;
+  background:rgba(255,255,255,.72);
+}
+.fact-card:before{height:3px}
 .quote{margin-bottom:8px;color:var(--ink);font-size:1.18rem;font-weight:950;line-height:1.25}
 .proof-card{
   background:linear-gradient(180deg,rgba(18,110,166,.08),rgba(255,255,255,.96));
@@ -494,7 +676,19 @@ h1{
   font-weight:950;
   margin-bottom:14px;
 }
-.review-card{display:flex;flex-direction:column;gap:12px}
+.reviews-section{
+  background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(233,244,244,.54));
+}
+.reviews-grid{
+  align-items:stretch;
+}
+.review-card{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,248,237,.62));
+}
+.review-card:before{background:linear-gradient(90deg,var(--gold),var(--terracotta))}
 .review-stars{color:#d88315;font-weight:950;letter-spacing:0}
 .review-text{color:var(--ink);font-size:1.05rem;font-weight:750;line-height:1.45}
 .review-meta{color:var(--muted);font-size:.92rem;font-weight:850;margin-top:auto}
@@ -507,11 +701,11 @@ h1{
   grid-template-columns:minmax(0,.86fr) minmax(320px,1.14fr);
   gap:30px;
   align-items:start;
-  padding:34px;
+  padding:36px;
   border:1px solid rgba(18,110,166,.18);
   border-radius:var(--radius);
   background:
-    linear-gradient(135deg,rgba(255,255,255,.98),rgba(239,180,71,.11) 52%,rgba(31,145,167,.1)),
+    linear-gradient(135deg,rgba(255,255,255,.98),rgba(239,180,71,.13) 52%,rgba(31,145,167,.14)),
     var(--card);
   box-shadow:0 20px 54px rgba(16,34,42,.12);
 }
@@ -586,29 +780,63 @@ h1{
   overflow:hidden;
   width:100vw;
   margin:8px calc(50% - 50vw);
-  padding:70px max(4vw,24px);
-  text-align:center;
+  padding:74px max(4vw,24px);
+  text-align:left;
   color:white;
   background:
-    linear-gradient(120deg,rgba(10,66,95,.94),rgba(16,34,42,.86)),
+    linear-gradient(120deg,rgba(10,66,95,.95),rgba(16,34,42,.88) 55%,rgba(182,82,52,.66)),
     url("assets/porto-hero.jpg");
   background-size:cover;
   background-position:center;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
 }
-.booking-card h2{color:white}
-.booking-card h2,.booking-card .section-intro{
+.booking-card-inner{
   width:min(1120px,92%);
   margin-left:auto;
   margin-right:auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,430px);
+  gap:34px;
+  align-items:center;
+}
+.booking-card h2{color:white}
+.booking-card h2,.booking-card .section-intro{
+  width:auto;
+  margin-left:0;
+  margin-right:0;
 }
 .booking-card .section-intro{color:rgba(255,255,255,.84)}
-.booking-card .hero-actions{justify-content:center;margin-bottom:0}
+.booking-copy .guide-tag{
+  background:rgba(255,255,255,.14);
+  color:white;
+}
+.booking-panel{
+  display:grid;
+  gap:13px;
+  padding:24px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(16px);
+  box-shadow:0 24px 70px rgba(6,19,24,.3);
+}
+.booking-panel strong{
+  color:white;
+  font-size:1.36rem;
+  line-height:1.15;
+}
+.booking-panel span{
+  color:rgba(255,255,255,.78);
+  font-weight:750;
+}
+.booking-panel .btn{
+  width:100%;
+}
 .booking-phone{
-  margin:18px auto 0;
-  width:min(1120px,92%);
+  margin:0;
+  width:auto;
   color:rgba(255,255,255,.88);
-  font-size:1rem;
+  font-size:.96rem;
   font-weight:850;
 }
 .booking-phone a{
@@ -809,7 +1037,11 @@ body.modal-open{overflow:hidden}
   .hero{min-height:auto;padding:62px 0 46px}
   .hero-shell{grid-template-columns:1fr;gap:30px}
   .hero-highlights{max-width:540px}
+  .trust-inner{grid-template-columns:1fr}
+  .steps-grid .step-card{border-right:0;border-bottom:1px solid rgba(16,34,42,.1)}
+  .steps-grid .step-card:last-child{border-bottom:0}
   .guide-panel{grid-template-columns:1fr}
+  .booking-card-inner{grid-template-columns:1fr}
   .review-submit-panel{grid-template-columns:1fr}
   .grid.cols-4,.grid.cols-3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -829,6 +1061,7 @@ body.modal-open{overflow:hidden}
   .nav-links{display:none}
   .nav{
     background:rgba(246,247,242,.96);
+    backdrop-filter:none;
     box-shadow:0 10px 24px rgba(16,34,42,.08);
   }
   .nav-inner{min-height:64px;gap:12px}
@@ -849,9 +1082,9 @@ body.modal-open{overflow:hidden}
   .hero{
     min-height:auto;
     display:block;
-    padding:24px 0 28px;
+    padding:36px 0 30px;
     background-image:
-      linear-gradient(180deg,rgba(6,19,24,.18) 0%,rgba(6,19,24,.72) 44%,rgba(6,19,24,.92) 100%),
+      linear-gradient(180deg,rgba(6,19,24,.32) 0%,rgba(6,19,24,.78) 42%,rgba(6,19,24,.95) 100%),
       url("assets/porto-hero.jpg");
     background-position:center top;
   }
@@ -861,12 +1094,12 @@ body.modal-open{overflow:hidden}
     width:auto;
     max-width:none;
     margin-inline:0;
-    padding:17px;
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:16px;
-    background:rgba(7,25,31,.68);
-    backdrop-filter:blur(16px);
-    box-shadow:0 20px 44px rgba(0,0,0,.24);
+    padding:0;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    backdrop-filter:none;
+    box-shadow:none;
     overflow:visible;
   }
   .hero-copy > *{max-width:100%}
@@ -905,6 +1138,15 @@ body.modal-open{overflow:hidden}
     line-height:1.15;
   }
   .micro{display:none}
+  .hero-proof{
+    gap:8px;
+    margin-top:14px;
+  }
+  .hero-proof span{
+    min-height:31px;
+    padding:6px 9px;
+    font-size:.72rem;
+  }
   .hero-highlights{
     display:block;
     width:auto;
@@ -914,7 +1156,9 @@ body.modal-open{overflow:hidden}
     border-radius:16px;
     box-shadow:0 16px 34px rgba(0,0,0,.18);
   }
+  .tour-pass{transform:none}
   .snapshot-main{display:none}
+  .hero-mini-review{display:none}
   .quick-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
   .quick-facts div{padding:13px 10px}
   .quick-facts strong{font-size:1rem}
@@ -930,6 +1174,14 @@ body.modal-open{overflow:hidden}
     box-shadow:0 12px 28px rgba(16,34,42,.08);
   }
   .card:hover{transform:none}
+  .trust-inner div{padding:12px 16px}
+  .trust-inner strong{font-size:.96rem}
+  .trust-inner span{
+    font-size:.82rem;
+    line-height:1.28;
+  }
+  .steps-grid{border-radius:12px}
+  .steps-grid .step-card{padding:20px}
   .guides-section{padding-top:54px}
   .guide-panel{
     gap:22px;
@@ -973,12 +1225,19 @@ body.modal-open{overflow:hidden}
     padding:16px;
     border-radius:12px;
   }
+  .guide-spotlight{padding:18px}
   .band,.booking-card{
     width:calc(100% + 32px);
     margin:0 -16px;
     padding:54px 0;
     background-position:center;
   }
+  .story-band{gap:22px}
+  .booking-card-inner{
+    width:calc(100% - 32px);
+    gap:20px;
+  }
+  .booking-panel{padding:20px}
   .booking-modal{
     align-items:start;
     justify-items:center;
