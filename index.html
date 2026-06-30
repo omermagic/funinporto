@@ -87,11 +87,11 @@
         </p>
 
         <div class="grid cols-4">
-          <div class="card">
+          <a class="card card-link" href="#book" onclick="event.preventDefault(); openWhatsApp();" aria-label="Send a booking request">
             <div class="num">1</div>
-            <h3>Send a WhatsApp</h3>
-            <p>Tell us your date, name, and number of people.</p>
-          </div>
+            <h3>Send a request</h3>
+            <p>Tell us your date, WhatsApp number, and number of people.</p>
+          </a>
 
           <div class="card">
             <div class="num">2</div>
@@ -308,13 +308,17 @@
         <div class="booking-card">
           <h2>Ready to walk Porto?</h2>
           <p class="section-intro">
-            Reserve your spot, get the meeting point on WhatsApp, and experience
-            Porto with stories, views, and useful local tips.
+            Send a quick booking request with your WhatsApp number. We will
+            confirm availability and the meeting point there.
           </p>
 
           <div class="hero-actions cta-actions">
             <button class="btn sun" onclick="openWhatsApp()">Book your spot</button>
           </div>
+
+          <p class="booking-phone">
+            Prefer WhatsApp? <a href="https://wa.me/351937106777" target="_blank" rel="noopener">+351 937 106 777</a>
+          </p>
         </div>
       </div>
     </section>
@@ -475,13 +479,22 @@
     </section>
   </main>
 
-  <a class="whatsapp-float" onclick="openWhatsApp()" aria-label="Book on WhatsApp">WA</a>
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/351937106777"
+    target="_blank"
+    rel="noopener"
+    aria-label="WhatsApp Fun in Porto at +351 937 106 777"
+  >
+    <span>WhatsApp</span>
+  </a>
 
   <footer class="footer">
     <div class="container footer-inner">
       <div>© <span data-current-year>2026</span> Fun in Porto · Free walking tours in Porto</div>
       <div>
-        <a href="#book">Book a tour</a>
+        <a href="#book">Book a tour</a> ·
+        <a href="https://wa.me/351937106777" target="_blank" rel="noopener">WhatsApp +351 937 106 777</a>
       </div>
     </div>
   </footer>

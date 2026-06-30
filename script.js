@@ -1,8 +1,16 @@
 const WHATSAPP_PHONE = '351937106777';
+const WHATSAPP_DISPLAY = '+351 937 106 777';
+const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
 let bookingLastFocus = null;
 
 function openWhatsApp() {
   openBookingModal();
+}
+
+function getWhatsAppUrl(message = '') {
+  const baseUrl = `https://wa.me/${WHATSAPP_PHONE}`;
+
+  return message ? `${baseUrl}?text=${encodeURIComponent(message)}` : baseUrl;
 }
 
 function getTodayInputValue() {
@@ -40,10 +48,25 @@ function ensureBookingModal() {
         <div class="booking-dialog-copy">
           <span class="guide-tag">Quick booking</span>
           <h2 id="booking-title">Reserve your Porto walk</h2>
-          <p>Pick a date and guest count. WhatsApp opens with the message ready.</p>
+          <p>Send your date, guest count, and WhatsApp number. We will confirm availability there.</p>
         </div>
 
-        <form class="booking-form" data-booking-form>
+        <form
+          class="booking-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          data-booking-form
+          data-success-message="Thanks! We received your booking request and will contact you on WhatsApp soon."
+          data-error-message="Something went wrong. Please send us a WhatsApp message instead."
+          data-sending-message="Sending your booking request..."
+        >
+          <input type="hidden" name="access_key" value="${WEB3FORMS_ACCESS_KEY}" />
+          <input type="hidden" name="subject" value="New Fun in Porto booking request" />
+          <input type="hidden" name="from_name" value="Fun in Porto website" />
+          <input type="hidden" name="tour" value="Porto walking tour" />
+          <input type="hidden" name="message" value="" />
+          <input type="checkbox" name="botcheck" class="bot-field" tabindex="-1" autocomplete="off" />
+
           <div class="form-row">
             <label>
               <span>Your name</span>
@@ -51,17 +74,31 @@ function ensureBookingModal() {
             </label>
 
             <label>
-              <span>Tour date</span>
-              <input type="date" name="date" required />
+              <span>WhatsApp number</span>
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+351 ..." required />
             </label>
           </div>
 
-          <label>
-            <span>Number of guests</span>
-            <input type="number" name="guests" min="1" max="30" value="2" required />
-          </label>
+          <div class="form-row">
+            <label>
+              <span>Tour date</span>
+              <input type="date" name="date" required />
+            </label>
 
-          <button class="btn sun booking-submit" type="submit">Continue to WhatsApp</button>
+            <label>
+              <span>Number of guests</span>
+              <input type="number" name="guests" min="1" max="30" value="2" required />
+            </label>
+          </div>
+
+          <p class="booking-contact-line">
+            Prefer WhatsApp? <a href="${getWhatsAppUrl()}" target="_blank" rel="noopener">${WHATSAPP_DISPLAY}</a>
+          </p>
+
+          <div class="form-actions booking-actions">
+            <button class="btn sun booking-submit" type="submit">Request booking</button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          </div>
         </form>
       </section>
     </div>
@@ -83,20 +120,78 @@ function ensureBookingModal() {
 
     const formData = new FormData(form);
     const name = String(formData.get('name') || '').trim();
+    const phone = String(formData.get('phone') || '').trim();
     const date = formatBookingDate(String(formData.get('date') || ''));
     const guests = String(formData.get('guests') || '').trim();
 
     const message = [
-      'Hi! I want to join the free walking tour in Porto.',
+      'New booking request for Fun in Porto walking tour.',
       `Name: ${name}`,
+      `WhatsApp number: ${phone}`,
       `Date: ${date}`,
       `Number of guests: ${guests}`,
-      'Can you confirm availability and the meeting point?',
+      'Please confirm availability and the meeting point on WhatsApp.',
     ].filter(Boolean).join('\n');
 
-    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
-    closeBookingModal();
+    form.elements.message.value = message;
+    submitWeb3Form(event, form, {
+      onSuccess: () => {
+        form.reset();
+        dateInput.min = getTodayInputValue();
+        dateInput.value = dateInput.min;
+      },
+    });
   });
+}
+
+async function submitWeb3Form(event, form, options = {}) {
+  event.preventDefault();
+
+  const status = form.querySelector('[data-form-status]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton ? submitButton.textContent : '';
+
+  if (status) {
+    status.dataset.state = '';
+    status.textContent = form.dataset.sendingMessage || 'Sending...';
+  }
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+  }
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method || 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || 'Form submission failed');
+    }
+
+    if (typeof options.onSuccess === 'function') {
+      options.onSuccess();
+    }
+
+    if (status) {
+      status.dataset.state = 'success';
+      status.textContent = form.dataset.successMessage || 'Sent successfully.';
+    }
+  } catch (error) {
+    if (status) {
+      status.dataset.state = 'error';
+      status.textContent = form.dataset.errorMessage || 'Something went wrong. Please try again.';
+    }
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  }
 }
 
 function openBookingModal() {
@@ -129,4 +224,12 @@ document.addEventListener('keydown', (event) => {
 
 document.querySelectorAll('[data-current-year]').forEach((element) => {
   element.textContent = new Date().getFullYear();
+});
+
+document.querySelectorAll('[data-review-form]').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    submitWeb3Form(event, form, {
+      onSuccess: () => form.reset(),
+    });
+  });
 });
