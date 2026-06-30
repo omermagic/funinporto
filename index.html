@@ -8,7 +8,7 @@
     name="description"
     content="Free walking tours in Porto with long-time Porto guides, fun stories, viewpoints, local tips, and a tips-based experience."
   />
-  <link rel="stylesheet" href="styles.css?v=20260630-2" />
+  <link rel="stylesheet" href="styles.css?v=20260630-4" />
 </head>
 <body>
   <nav class="nav">
@@ -93,7 +93,8 @@
         </div>
         <div>
           <strong>Human confirmation</strong>
-          <span>Send your phone and we confirm by WhatsApp.</span>
+          <span class="desktop-copy">Send your phone and we confirm by WhatsApp.</span>
+          <span class="mobile-copy">WhatsApp opens ready and we reply there.</span>
         </div>
         <div>
           <strong>First-day friendly</strong>
@@ -115,7 +116,10 @@
           <a class="card card-link step-card" href="#book" onclick="event.preventDefault(); openWhatsApp();" aria-label="Send a booking request">
             <div class="num">1</div>
             <h3>Send a request</h3>
-            <p>Tell us your date, WhatsApp number, and number of people.</p>
+            <p>
+              <span class="desktop-copy">Tell us your date, WhatsApp number, and number of people.</span>
+              <span class="mobile-copy">Choose your date and guest count, then send the ready WhatsApp message.</span>
+            </p>
           </a>
 
           <div class="card step-card">
@@ -345,14 +349,15 @@
               <span class="guide-tag">Quick booking</span>
               <h2>Ready to walk Porto?</h2>
               <p class="section-intro">
-                Send a quick request with your WhatsApp number. We will confirm
-                availability, time, and the central meeting point there.
+                <span class="desktop-copy">Send a quick request with your WhatsApp number. We will confirm availability, time, and the central meeting point there.</span>
+                <span class="mobile-copy">Choose your date and guest count, then send the prefilled WhatsApp message. We will confirm availability, time, and the central meeting point there.</span>
               </p>
             </div>
 
             <div class="booking-panel">
               <strong>Reserve your free tour</strong>
-              <span>Name, phone, date, guest count. That is it.</span>
+              <span class="desktop-copy">Name, phone, date, guest count. That is it.</span>
+              <span class="mobile-copy">Name, date, guest count. WhatsApp opens ready.</span>
               <p class="booking-reassurance">No payment now · We confirm by WhatsApp · Takes 20 seconds</p>
               <button class="btn sun" onclick="openWhatsApp()">Reserve your free tour</button>
               <p class="booking-phone">
@@ -490,12 +495,12 @@
     <div class="container footer-inner">
       <div>© <span data-current-year>2026</span> Fun in Porto · Free walking tours in Porto</div>
       <div>
-        <a href="#book">Reserve your free tour</a> ·
+        <a href="#book" onclick="event.preventDefault(); openWhatsApp();">Reserve your free tour</a> ·
         <a href="https://wa.me/351937106777" target="_blank" rel="noopener">WhatsApp +351 937 106 777</a>
       </div>
     </div>
   </footer>
 
-  <script src="script.js?v=20260630-6"></script>
+  <script src="script.js?v=20260630-7"></script>
 </body>
 </html>

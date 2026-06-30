@@ -1,6 +1,7 @@
 const WHATSAPP_PHONE = '351937106777';
 const WHATSAPP_DISPLAY = '+351 937 106 777';
 const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
+const MOBILE_BOOKING_QUERY = '(max-width: 760px)';
 let bookingLastFocus = null;
 let reviewLastFocus = null;
 
@@ -37,6 +38,43 @@ function formatBookingDate(value) {
   }).format(date);
 }
 
+function isMobileBookingFunnel() {
+  return window.matchMedia(MOBILE_BOOKING_QUERY).matches;
+}
+
+function updateBookingFunnelMode(form) {
+  const isMobile = isMobileBookingFunnel();
+  const phoneField = form.querySelector('[data-booking-phone-field]');
+  const phoneInput = form.elements.phone;
+  const submitButton = form.querySelector('[data-booking-submit]');
+  const intro = document.querySelector('[data-booking-intro]');
+  const reassurance = document.querySelector('[data-modal-booking-reassurance]');
+
+  form.dataset.bookingMode = isMobile ? 'whatsapp' : 'email';
+
+  if (phoneField && phoneInput) {
+    phoneField.hidden = isMobile;
+    phoneInput.disabled = isMobile;
+    phoneInput.required = !isMobile;
+  }
+
+  if (submitButton) {
+    submitButton.textContent = isMobile ? 'Send WhatsApp request' : 'Reserve your free tour';
+  }
+
+  if (intro) {
+    intro.textContent = isMobile
+      ? 'Choose your date and guest count. WhatsApp will open with the message ready.'
+      : 'Send your details. We will confirm on WhatsApp. No payment now.';
+  }
+
+  if (reassurance) {
+    reassurance.textContent = isMobile
+      ? 'No payment now · WhatsApp opens ready · Takes 20 seconds'
+      : 'No payment now · We confirm by WhatsApp · Takes 20 seconds';
+  }
+}
+
 function ensureBookingModal() {
   if (document.querySelector('[data-booking-modal]')) return;
 
@@ -49,8 +87,8 @@ function ensureBookingModal() {
         <div class="booking-dialog-copy">
           <span class="guide-tag">Quick booking</span>
           <h2 id="booking-title">Reserve your free tour</h2>
-          <p>Send your details. We will confirm on WhatsApp. No payment now.</p>
-          <p class="booking-reassurance">No payment now · We confirm by WhatsApp · Takes 20 seconds</p>
+          <p data-booking-intro>Send your details. We will confirm on WhatsApp. No payment now.</p>
+          <p class="booking-reassurance" data-modal-booking-reassurance>No payment now · We confirm by WhatsApp · Takes 20 seconds</p>
         </div>
 
         <form
@@ -75,7 +113,7 @@ function ensureBookingModal() {
               <input type="text" name="name" autocomplete="name" required />
             </label>
 
-            <label>
+            <label data-booking-phone-field>
               <span>WhatsApp number</span>
               <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+351 ..." required />
             </label>
@@ -98,7 +136,7 @@ function ensureBookingModal() {
           </p>
 
           <div class="form-actions booking-actions">
-            <button class="btn sun booking-submit" type="submit">Reserve your free tour</button>
+            <button class="btn sun booking-submit" type="submit" data-booking-submit>Reserve your free tour</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -109,9 +147,19 @@ function ensureBookingModal() {
   const modal = document.querySelector('[data-booking-modal]');
   const form = modal.querySelector('[data-booking-form]');
   const dateInput = form.elements.date;
+  const bookingMediaQuery = window.matchMedia(MOBILE_BOOKING_QUERY);
 
   dateInput.min = getTodayInputValue();
   dateInput.value = dateInput.min;
+  updateBookingFunnelMode(form);
+
+  const handleBookingModeChange = () => updateBookingFunnelMode(form);
+
+  if (typeof bookingMediaQuery.addEventListener === 'function') {
+    bookingMediaQuery.addEventListener('change', handleBookingModeChange);
+  } else if (typeof bookingMediaQuery.addListener === 'function') {
+    bookingMediaQuery.addListener(handleBookingModeChange);
+  }
 
   modal.querySelectorAll('[data-booking-close]').forEach((button) => {
     button.addEventListener('click', closeBookingModal);
@@ -125,15 +173,32 @@ function ensureBookingModal() {
     const phone = String(formData.get('phone') || '').trim();
     const date = formatBookingDate(String(formData.get('date') || ''));
     const guests = String(formData.get('guests') || '').trim();
+    const isMobile = form.dataset.bookingMode === 'whatsapp';
 
     const message = [
-      'New booking request for Fun in Porto walking tour.',
+      isMobile
+        ? 'Hi Fun in Porto! I would like to reserve a free walking tour.'
+        : 'New booking request for Fun in Porto walking tour.',
       `Name: ${name}`,
-      `WhatsApp number: ${phone}`,
+      isMobile ? '' : `WhatsApp number: ${phone}`,
       `Date: ${date}`,
       `Number of guests: ${guests}`,
-      'Please confirm availability and the meeting point on WhatsApp.',
+      isMobile
+        ? 'Please confirm availability, meeting point, and tour time.'
+        : 'Please confirm availability and the meeting point on WhatsApp.',
     ].filter(Boolean).join('\n');
+
+    if (isMobile) {
+      const status = form.querySelector('[data-form-status]');
+
+      if (status) {
+        status.dataset.state = '';
+        status.textContent = 'Opening WhatsApp...';
+      }
+
+      window.location.href = getWhatsAppUrl(message);
+      return;
+    }
 
     form.elements.message.value = message;
     submitWeb3Form(event, form, {
@@ -281,7 +346,9 @@ function openBookingModal() {
   ensureBookingModal();
 
   const modal = document.querySelector('[data-booking-modal]');
+  const form = modal.querySelector('[data-booking-form]');
   bookingLastFocus = document.activeElement;
+  updateBookingFunnelMode(form);
   modal.hidden = false;
   document.body.classList.add('modal-open');
   modal.querySelector('input[name="name"]').focus();

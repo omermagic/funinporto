@@ -426,6 +426,7 @@ h1{
   background:linear-gradient(90deg,var(--azulejo),var(--gold),var(--terracotta));
 }
 .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(16,34,42,.13);border-color:rgba(18,110,166,.24)}
+span.mobile-copy{display:none}
 .card-link{
   display:block;
   min-height:100%;
@@ -978,6 +979,7 @@ body.modal-open{overflow:hidden}
   color:var(--ink);
   font-weight:900;
 }
+.booking-form label[hidden]{display:none !important}
 .booking-form label span{font-size:.9rem}
 .booking-form input{
   width:100%;
@@ -1236,6 +1238,8 @@ body.modal-open{overflow:hidden}
   .section-intro{font-size:1rem;line-height:1.55}
   .grid.cols-4,.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
   .grid{gap:14px}
+  span.desktop-copy{display:none}
+  span.mobile-copy{display:inline}
   .card{
     border-radius:12px;
     padding:22px;
