@@ -47,8 +47,8 @@ function ensureBookingModal() {
 
         <div class="booking-dialog-copy">
           <span class="guide-tag">Quick booking</span>
-          <h2 id="booking-title">Reserve your Porto walk</h2>
-          <p>Send your date, guest count, and WhatsApp number. We will confirm availability there.</p>
+          <h2 id="booking-title">Reserve your walk</h2>
+          <p>Send your details. We will confirm on WhatsApp.</p>
         </div>
 
         <form
