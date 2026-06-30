@@ -6,7 +6,7 @@
   <title>Fun in Porto | Free Walking Tours in Porto</title>
   <meta
     name="description"
-    content="Free walking tours in Porto in English and Hebrew with long-time Porto guides, fun stories, viewpoints, local tips, and a tips-based experience."
+    content="Free walking tours in Porto in English with long-time Porto guides, fun stories, viewpoints, local tips, and a tips-based experience."
   />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -19,10 +19,10 @@
       </a>
 
       <div class="nav-links">
-        <a href="english.html">English</a>
-        <a href="hebrew.html">עברית</a>
+        <a href="english.html">Tour</a>
         <a href="#how">How it works</a>
         <a href="#guides">Guides</a>
+        <a href="#review">Review</a>
         <a href="#faq">FAQ</a>
       </div>
 
@@ -44,8 +44,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn" href="english.html">English tours</a>
-            <a class="btn alt" href="hebrew.html">סיורים בעברית</a>
+            <a class="btn" href="english.html">View tour</a>
           </div>
 
           <p class="micro">
@@ -66,8 +65,8 @@
               <span>Easy pace</span>
             </div>
             <div>
-              <strong>2</strong>
-              <span>Languages</span>
+              <strong>EN</strong>
+              <span>Language</span>
             </div>
             <div>
               <strong>0 EUR</strong>
@@ -90,14 +89,14 @@
         <div class="grid cols-4">
           <div class="card">
             <div class="num">1</div>
-            <h3>Choose a language</h3>
-            <p>English or Hebrew. Same Porto magic, different language.</p>
+            <h3>Send a WhatsApp</h3>
+            <p>Tell us your date, name, and number of people.</p>
           </div>
 
           <div class="card">
             <div class="num">2</div>
-            <h3>Reserve your spot</h3>
-            <p>Send a WhatsApp message so we can plan a good group size.</p>
+            <h3>Get meeting details</h3>
+            <p>We reply with availability and the central meeting point.</p>
           </div>
 
           <div class="card">
@@ -196,10 +195,10 @@
     <!-- Tour cards -->
     <section class="section">
       <div class="container">
-        <h2>Choose your tour</h2>
-        <p class="section-intro">Two simple pages, two clear audiences, one memorable brand.</p>
+        <h2>Free Walking Tour in English</h2>
+        <p class="section-intro">One friendly Porto walk with stories, views, and practical local tips.</p>
 
-        <div class="grid cols-2">
+        <div class="grid single-tour-grid">
           <div class="card tour-card">
             <div class="emoji">🌍</div>
             <h3>Free Walking Tour in English</h3>
@@ -210,18 +209,6 @@
               <li>Tips-based</li>
             </ul>
             <a class="btn" href="english.html">View English tour</a>
-          </div>
-
-          <div class="card tour-card">
-            <div class="emoji">🇮🇱</div>
-            <h3>סיור חינמי בפורטו בעברית</h3>
-            <p>פורטו בעברית, בגובה העיניים, עם סיפורים, תצפיות, המלצות ואווירה טובה.</p>
-            <ul>
-              <li>כשעתיים עד שעתיים וחצי</li>
-              <li>נקודת מפגש מרכזית</li>
-              <li>טיפ בסוף לפי החוויה</li>
-            </ul>
-            <a class="btn" href="hebrew.html">לעמוד בעברית</a>
           </div>
         </div>
       </div>
@@ -282,19 +269,83 @@
       </div>
     </section>
 
+    <!-- Review form -->
+    <section id="review" class="section review-submit-section">
+      <div class="container">
+        <div class="review-submit-panel">
+          <div class="review-submit-copy">
+            <span class="guide-tag">Share your experience</span>
+            <h2>Leave a review</h2>
+            <p class="section-intro">
+              Joined one of our walks? Send us your feedback and it will arrive
+              directly in our email.
+            </p>
+          </div>
+
+          <form
+            class="review-form"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            data-review-form
+            data-success-message="Thank you! Your review was sent."
+            data-error-message="Something went wrong. Please try again or send us a WhatsApp message."
+            data-sending-message="Sending your review..."
+          >
+            <input type="hidden" name="access_key" value="9f9a1675-060f-491a-bee9-6dbded9e081b" />
+            <input type="hidden" name="subject" value="New Fun in Porto review" />
+            <input type="hidden" name="from_name" value="Fun in Porto website" />
+            <input type="hidden" name="tour" value="English tour" />
+            <input type="checkbox" name="botcheck" class="bot-field" tabindex="-1" autocomplete="off" />
+
+            <div class="form-row">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+            </div>
+
+            <label>
+              <span>Rating</span>
+              <select name="rating" required>
+                <option value="5 stars">5 stars</option>
+                <option value="4 stars">4 stars</option>
+                <option value="3 stars">3 stars</option>
+                <option value="2 stars">2 stars</option>
+                <option value="1 star">1 star</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Your review</span>
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button class="btn sun" type="submit">Send review</button>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- Booking -->
     <section id="book" class="section">
       <div class="container">
         <div class="booking-card">
-          <h2>Choose your language and start walking.</h2>
+          <h2>Ready to walk Porto?</h2>
           <p class="section-intro">
-            Reserve a spot in English or Hebrew, get the meeting point on WhatsApp,
-            and experience Porto with stories, views, and useful local tips.
+            Reserve your spot, get the meeting point on WhatsApp, and experience
+            Porto with stories, views, and useful local tips.
           </p>
 
           <div class="hero-actions cta-actions">
-            <a class="btn sun" href="english.html">Book in English</a>
-            <a class="btn alt" href="hebrew.html">הזמנה בעברית</a>
+            <a class="btn sun" href="english.html">Book the English tour</a>
           </div>
         </div>
       </div>
@@ -340,7 +391,7 @@
     <div class="container footer-inner">
       <div>© Fun in Porto · Free walking tours in Porto</div>
       <div>
-        <a href="english.html">English</a> · <a href="hebrew.html">עברית</a>
+        <a href="english.html">English tour</a>
       </div>
     </div>
   </footer>

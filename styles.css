@@ -227,10 +227,15 @@ h1{
   font-size:1.08rem;
   font-weight:650;
 }
+.redirect-title{
+  color:var(--ink);
+  font-size:3rem;
+}
 .grid{display:grid;gap:20px}
 .grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.single-tour-grid{grid-template-columns:minmax(0,560px)}
 
 /* Cards */
 .card{
@@ -413,6 +418,81 @@ h1{
 .review-meta{color:var(--muted);font-size:.92rem;font-weight:850;margin-top:auto}
 .reviews-section:not(:has(.review-card)){display:none}
 
+/* Review submission */
+.review-submit-section{padding-top:42px}
+.review-submit-panel{
+  display:grid;
+  grid-template-columns:minmax(0,.86fr) minmax(320px,1.14fr);
+  gap:30px;
+  align-items:start;
+  padding:34px;
+  border:1px solid rgba(18,110,166,.18);
+  border-radius:var(--radius);
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.98),rgba(239,180,71,.11) 52%,rgba(31,145,167,.1)),
+    var(--card);
+  box-shadow:0 20px 54px rgba(16,34,42,.12);
+}
+.review-submit-copy .section-intro{margin-bottom:0}
+.review-form{
+  display:grid;
+  gap:16px;
+}
+.form-row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.review-form label{
+  display:grid;
+  gap:7px;
+  color:var(--ink);
+  font-weight:900;
+}
+.review-form label span{font-size:.9rem}
+.review-form input,
+.review-form select,
+.review-form textarea{
+  width:100%;
+  border:1px solid rgba(16,34,42,.16);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.94);
+  color:var(--ink);
+  font:inherit;
+  font-weight:650;
+  line-height:1.35;
+  padding:12px 13px;
+  box-shadow:0 8px 20px rgba(16,34,42,.05);
+}
+.review-form textarea{resize:vertical;min-height:132px}
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus{
+  outline:3px solid rgba(239,180,71,.54);
+  border-color:rgba(18,110,166,.4);
+}
+.bot-field{display:none}
+.form-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.review-form button:disabled{
+  opacity:.72;
+  cursor:progress;
+  transform:none;
+}
+.form-status{
+  min-height:1.4em;
+  margin:0;
+  color:var(--muted);
+  font-size:.94rem;
+  font-weight:850;
+}
+.form-status[data-state="success"]{color:var(--vine)}
+.form-status[data-state="error"]{color:var(--terracotta)}
+
 /* Booking CTA */
 .booking-card{
   position:relative;
@@ -517,6 +597,7 @@ h1{
   .hero-shell{grid-template-columns:1fr;gap:30px}
   .hero-highlights{max-width:540px}
   .guide-panel{grid-template-columns:1fr}
+  .review-submit-panel{grid-template-columns:1fr}
   .grid.cols-4,.grid.cols-3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
@@ -632,6 +713,18 @@ h1{
     padding:26px 22px;
     border-radius:16px;
   }
+  .review-submit-section{padding-top:30px}
+  .review-submit-panel{
+    gap:22px;
+    padding:26px 22px;
+    border-radius:16px;
+  }
+  .form-row{grid-template-columns:1fr}
+  .form-actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  .form-actions .btn{width:100%}
   .guide-panel:before{
     width:auto;
     height:6px;
@@ -699,7 +792,7 @@ h1{
     overflow-wrap:break-word;
   }
   .hero-actions{width:auto;max-width:100%}
-  .hero-copy,.hero-highlights,.guide-panel,.card{max-width:100%}
+  .hero-copy,.hero-highlights,.guide-panel,.review-submit-panel,.card{max-width:100%}
   .card{padding:21px}
   .booking-card{padding:48px 0}
   .quick-facts div{border-top:0}
