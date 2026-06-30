@@ -57,7 +57,7 @@ function ensureBookingModal() {
           action="https://api.web3forms.com/submit"
           method="POST"
           data-booking-form
-          data-success-message="Thanks! We received your booking request and will contact you on WhatsApp soon."
+          data-success-message="Thanks — we got your request.&#10;&#10;We’ll contact you by WhatsApp to confirm availability, meeting point, and tour time.&#10;&#10;No payment is needed now. The tour is free to join, and tips are appreciated at the end."
           data-error-message="Something went wrong. Please send us a WhatsApp message instead."
           data-sending-message="Sending your booking request..."
         >
