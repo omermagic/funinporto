@@ -59,19 +59,19 @@ function updateBookingFunnelMode(form) {
   }
 
   if (submitButton) {
-    submitButton.textContent = isMobile ? 'Send WhatsApp request' : 'Reserve your free tour';
+    submitButton.textContent = isMobile ? 'Send WhatsApp request' : 'Check availability';
   }
 
   if (intro) {
     intro.textContent = isMobile
       ? 'Choose your date and guest count. WhatsApp will open with the message ready.'
-      : 'Send your details. We will confirm on WhatsApp. No payment now.';
+      : "Choose your preferred date and group size. We'll confirm availability and send the meeting point by WhatsApp.";
   }
 
   if (reassurance) {
     reassurance.textContent = isMobile
-      ? 'No payment now · WhatsApp opens ready · Takes 20 seconds'
-      : 'No payment now · We confirm by WhatsApp · Takes 20 seconds';
+      ? 'Free booking · WhatsApp opens ready'
+      : 'Free booking · Confirmation by WhatsApp';
   }
 }
 
@@ -86,9 +86,9 @@ function ensureBookingModal() {
 
         <div class="booking-dialog-copy">
           <span class="guide-tag">Quick booking</span>
-          <h2 id="booking-title">Reserve your free tour</h2>
-          <p data-booking-intro>Send your details. We will confirm on WhatsApp. No payment now.</p>
-          <p class="booking-reassurance" data-modal-booking-reassurance>No payment now · We confirm by WhatsApp · Takes 20 seconds</p>
+          <h2 id="booking-title">Check availability</h2>
+          <p data-booking-intro>Choose your preferred date and group size. We'll confirm availability and send the meeting point by WhatsApp.</p>
+          <p class="booking-reassurance" data-modal-booking-reassurance>Free booking · Confirmation by WhatsApp</p>
         </div>
 
         <form
@@ -96,7 +96,7 @@ function ensureBookingModal() {
           action="https://api.web3forms.com/submit"
           method="POST"
           data-booking-form
-          data-success-message="Thanks — we got your request.&#10;&#10;We’ll contact you by WhatsApp to confirm availability, meeting point, and tour time.&#10;&#10;No payment is needed now. The tour is free to join, and tips are appreciated at the end."
+          data-success-message="Thanks — we got your availability request.&#10;&#10;We’ll contact you by WhatsApp to confirm availability, meeting point, and tour time.&#10;&#10;No payment is needed now. The tour is free to join, and tips are appreciated at the end."
           data-error-message="Something went wrong. Please send us a WhatsApp message instead."
           data-sending-message="Sending your booking request..."
         >
@@ -136,7 +136,7 @@ function ensureBookingModal() {
           </p>
 
           <div class="form-actions booking-actions">
-            <button class="btn sun booking-submit" type="submit" data-booking-submit>Reserve your free tour</button>
+            <button class="btn sun booking-submit" type="submit" data-booking-submit>Check availability</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -177,8 +177,8 @@ function ensureBookingModal() {
 
     const message = [
       isMobile
-        ? 'Hi Fun in Porto! I would like to reserve a free walking tour.'
-        : 'New booking request for Fun in Porto walking tour.',
+        ? 'Hi Fun in Porto! I would like to check availability for a free walking tour.'
+        : 'New availability request for Fun in Porto walking tour.',
       `Name: ${name}`,
       isMobile ? '' : `WhatsApp number: ${phone}`,
       `Date: ${date}`,
