@@ -77,8 +77,22 @@ function ensureBookingModal() {
   if (document.querySelector('[data-booking-modal]')) return;
 
   document.body.insertAdjacentHTML('beforeend', `
-    <div class="booking-modal" data-booking-modal hidden>
+    <div class="booking-modal booking-tour-modal" data-booking-modal hidden>
       <div class="booking-modal-backdrop" data-booking-close></div>
+      <div class="booking-landmarks" aria-hidden="true">
+        <div class="booking-landmark">
+          <span>Dom Luis I Bridge</span>
+        </div>
+        <div class="booking-landmark">
+          <span>Ribeira riverfront</span>
+        </div>
+        <div class="booking-landmark">
+          <span>Sao Bento tiles</span>
+        </div>
+        <div class="booking-landmark">
+          <span>Cathedral hill</span>
+        </div>
+      </div>
       <section class="booking-dialog" role="dialog" aria-modal="true" aria-label="Check availability">
         <button class="booking-close" type="button" data-booking-close aria-label="Close booking form">×</button>
 

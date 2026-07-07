@@ -241,7 +241,62 @@ h1{
   font-weight:900;
   line-height:1.35;
 }
-.hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin:28px 0 15px}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:13px;
+  margin:32px 0 13px;
+}
+.hero-primary-cta{
+  position:relative;
+  min-height:62px;
+  padding:18px 30px;
+  font-size:1.08rem;
+  box-shadow:
+    0 22px 46px rgba(244,123,66,.34),
+    0 0 0 1px rgba(255,255,255,.42) inset;
+}
+.hero-primary-cta:after{
+  content:"";
+  position:absolute;
+  inset:-7px;
+  border:1px solid rgba(239,180,71,.56);
+  border-radius:999px;
+  opacity:.82;
+  pointer-events:none;
+}
+.hero-primary-cta:hover{
+  box-shadow:
+    0 26px 56px rgba(244,123,66,.44),
+    0 0 0 1px rgba(255,255,255,.52) inset;
+}
+.hero-cta-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:9px 13px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  color:rgba(255,255,255,.92);
+  font-size:.9rem;
+  font-weight:900;
+  line-height:1.2;
+  backdrop-filter:blur(12px);
+  box-shadow:0 12px 28px rgba(6,19,24,.18);
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.hero-cta-badge:hover{
+  transform:translateY(-2px);
+  border-color:rgba(239,180,71,.5);
+  background:rgba(255,255,255,.2);
+}
+.hero-cta-badge:focus-visible{
+  outline:3px solid rgba(239,180,71,.72);
+  outline-offset:3px;
+}
 .micro{margin:0;color:rgba(255,255,255,.78);font-size:.96rem;font-weight:750}
 .booking-reassurance{
   margin:0;
@@ -1010,9 +1065,75 @@ body.modal-open{overflow:hidden}
   background:rgba(6,19,24,.68);
   backdrop-filter:blur(10px);
 }
+.booking-tour-modal .booking-modal-backdrop{
+  background:
+    linear-gradient(135deg,rgba(6,19,24,.88),rgba(6,19,24,.66) 48%,rgba(10,66,95,.7)),
+    url("assets/porto-hero.jpg");
+  background-size:cover;
+  background-position:center;
+  backdrop-filter:blur(7px);
+}
+.booking-landmarks{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  overflow:hidden;
+  pointer-events:none;
+}
+.booking-landmark{
+  position:absolute;
+  width:clamp(156px,18vw,238px);
+  aspect-ratio:1.48;
+  display:flex;
+  align-items:end;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:18px;
+  background-image:
+    linear-gradient(180deg,rgba(6,19,24,0) 28%,rgba(6,19,24,.78) 100%),
+    url("assets/porto-hero.jpg");
+  background-size:860px auto;
+  box-shadow:0 26px 70px rgba(6,19,24,.42);
+  opacity:0;
+  transform:translateY(16px) scale(.96) rotate(var(--tilt));
+}
+.booking-landmark:first-child{opacity:.76}
+.booking-landmark span{
+  width:100%;
+  padding:13px 14px;
+  color:white;
+  font-size:.86rem;
+  font-weight:950;
+  line-height:1.12;
+  text-shadow:0 2px 12px rgba(6,19,24,.74);
+}
+.booking-landmark:nth-child(1){
+  --tilt:-3deg;
+  top:11%;
+  right:max(22px,calc(50% - 630px));
+  background-position:84% 42%;
+}
+.booking-landmark:nth-child(2){
+  --tilt:2deg;
+  bottom:13%;
+  left:max(28px,calc(50% - 630px));
+  background-position:62% 61%;
+}
+.booking-landmark:nth-child(3){
+  --tilt:-1.5deg;
+  top:16%;
+  left:max(22px,calc(50% - 610px));
+  background-position:10% 56%;
+}
+.booking-landmark:nth-child(4){
+  --tilt:3deg;
+  bottom:10%;
+  right:max(28px,calc(50% - 600px));
+  background-position:58% 30%;
+}
 .booking-dialog{
   position:relative;
-  z-index:1;
+  z-index:2;
   width:min(760px,100%);
   max-height:calc(100dvh - 44px);
   overflow:auto;
@@ -1173,9 +1294,27 @@ body.modal-open{overflow:hidden}
 @media (prefers-reduced-motion:no-preference){
   .hero-copy,.hero-highlights{animation:riseIn .55s ease both}
   .hero-highlights{animation-delay:.08s}
+  .booking-landmark{
+    animation:landmarkCycle 20s ease-in-out infinite;
+    opacity:0;
+    will-change:opacity,transform;
+  }
+  .booking-landmark:nth-child(2){animation-delay:5s}
+  .booking-landmark:nth-child(3){animation-delay:10s}
+  .booking-landmark:nth-child(4){animation-delay:15s}
   @keyframes riseIn{
     from{opacity:0;transform:translateY(16px)}
     to{opacity:1;transform:translateY(0)}
+  }
+  @keyframes landmarkCycle{
+    0%,22%{
+      opacity:.82;
+      transform:translateY(0) scale(1) rotate(var(--tilt));
+    }
+    26%,100%{
+      opacity:0;
+      transform:translateY(-14px) scale(.98) rotate(var(--tilt));
+    }
   }
 }
 
@@ -1308,6 +1447,23 @@ body.modal-open{overflow:hidden}
     font-size:.9rem;
     white-space:normal;
     line-height:1.15;
+  }
+  .hero-primary-cta{
+    min-height:58px;
+    padding:15px 18px;
+    font-size:1rem;
+    box-shadow:
+      0 18px 40px rgba(244,123,66,.36),
+      0 0 0 1px rgba(255,255,255,.38) inset;
+  }
+  .hero-primary-cta:after{inset:-4px}
+  .hero-cta-badge{
+    justify-content:center;
+    width:100%;
+    min-height:36px;
+    padding:8px 10px;
+    font-size:.76rem;
+    text-align:center;
   }
   .hero-copy > .booking-reassurance{
     display:block;
@@ -1472,6 +1628,11 @@ body.modal-open{overflow:hidden}
     justify-items:center;
     padding:calc(12px + env(safe-area-inset-top)) 12px 12px;
   }
+  .booking-tour-modal .booking-modal-backdrop{
+    background-position:center top;
+    backdrop-filter:blur(6px);
+  }
+  .booking-landmarks{display:none}
   .booking-dialog{
     width:min(358px,calc(100vw - 32px));
     max-height:calc(100dvh - 24px);
@@ -1536,6 +1697,13 @@ body.modal-open{overflow:hidden}
     max-width:358px;
     margin-left:16px;
     margin-right:auto;
+  }
+  .booking-modal{justify-items:start}
+  .booking-dialog{
+    width:calc(100vw - 32px);
+    max-width:358px;
+    margin-left:4px;
+    margin-right:4px;
   }
   .nav-inner{gap:8px}
   .nav .btn{
