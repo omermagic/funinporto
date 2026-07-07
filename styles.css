@@ -1522,10 +1522,18 @@ body.modal-open{overflow:hidden}
   color:#281300;
   font-weight:950;
   line-height:1.05;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(14px);
   box-shadow:
     0 16px 34px rgba(244,123,66,.3),
     0 0 0 1px rgba(255,255,255,.42) inset;
-  transition:transform .18s ease,box-shadow .18s ease;
+  transition:opacity .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+body.show-sticky-availability .availability-float{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
 }
 .availability-float:hover{
   transform:translateY(-2px);
@@ -1645,6 +1653,15 @@ body.modal-open .availability-float{display:none}
     padding:13px 18px;
     font-size:1rem;
     box-shadow:0 18px 40px rgba(16,34,42,.32);
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(14px);
+    transition:opacity .18s ease,transform .18s ease,box-shadow .18s ease;
+  }
+  body.show-sticky-availability .nav .btn{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
   }
   .hero{
     min-height:auto;

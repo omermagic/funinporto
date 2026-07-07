@@ -3,6 +3,7 @@ const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
 const MOBILE_BOOKING_QUERY = '(max-width: 760px)';
 const PORTUGAL_TIME_ZONE = 'Europe/Lisbon';
 const SAME_DAY_BOOKING_CUTOFF_HOUR = 19;
+const STICKY_AVAILABILITY_SCROLL_THRESHOLD = 80;
 const BOOKING_CONFIRMATION_COPY = "We'll confirm availability and send the meeting point by WhatsApp.";
 const BOOKING_INTRO_COPY = `Choose your date and group size. ${BOOKING_CONFIRMATION_COPY}`;
 let bookingLastFocus = null;
@@ -440,6 +441,17 @@ document.addEventListener('keydown', (event) => {
     closeReviewModal();
   }
 });
+
+function updateStickyAvailabilityVisibility() {
+  document.body.classList.toggle(
+    'show-sticky-availability',
+    window.scrollY > STICKY_AVAILABILITY_SCROLL_THRESHOLD
+  );
+}
+
+updateStickyAvailabilityVisibility();
+window.addEventListener('load', updateStickyAvailabilityVisibility);
+window.addEventListener('scroll', updateStickyAvailabilityVisibility, { passive: true });
 
 document.querySelectorAll('[data-current-year]').forEach((element) => {
   element.textContent = new Date().getFullYear();
