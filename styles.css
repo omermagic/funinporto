@@ -234,13 +234,6 @@ h1{
   line-height:1.55;
   font-weight:620;
 }
-.hero-fit{
-  margin:-10px 0 18px;
-  color:rgba(255,255,255,.92);
-  font-size:1.04rem;
-  font-weight:900;
-  line-height:1.35;
-}
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
@@ -433,6 +426,41 @@ h1{
 .quick-facts div:last-child{border-right:0}
 .quick-facts strong{display:block;color:white;font-size:1.12rem;line-height:1.1}
 .quick-facts span{display:block;margin-top:4px;color:rgba(255,255,255,.72);font-size:.78rem;font-weight:800}
+.hero-route-mini{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:16px;
+  border-top:1px solid rgba(255,255,255,.16);
+  border-bottom:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.08);
+}
+.hero-route-mini span{
+  position:relative;
+  min-height:34px;
+  display:flex;
+  align-items:center;
+  padding:8px 11px 8px 25px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.9);
+  font-size:.8rem;
+  font-weight:900;
+  line-height:1.15;
+}
+.hero-route-mini span:before{
+  content:"";
+  position:absolute;
+  left:11px;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:999px;
+  background:var(--gold);
+  box-shadow:0 0 0 4px rgba(239,180,71,.16);
+  transform:translateY(-50%);
+}
 
 /* Trust strip */
 .trust-strip{
@@ -499,6 +527,162 @@ h1{
   font-size:1.18rem;
   font-weight:850;
   line-height:1.35;
+}
+
+/* Route preview */
+.porto-postcards-section{
+  position:relative;
+  overflow:hidden;
+  padding:88px 0;
+  background:
+    linear-gradient(120deg,rgba(6,19,24,.96),rgba(10,66,95,.86) 46%,rgba(182,82,52,.78)),
+    url("assets/porto-hero.jpg");
+  background-size:cover;
+  background-position:center;
+  color:white;
+}
+.porto-postcards-section:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:72px 72px;
+  opacity:.4;
+  pointer-events:none;
+}
+.postcard-shell{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);
+  gap:42px;
+  align-items:center;
+}
+.porto-postcards-section .postcard-copy h2{
+  max-width:620px;
+  color:white;
+  font-size:3.15rem;
+}
+.postcard-copy .section-intro{
+  color:rgba(255,255,255,.82);
+}
+.postcard-copy .guide-tag{
+  background:rgba(255,255,255,.13);
+  color:white;
+}
+.route-line{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:28px;
+}
+.route-line span{
+  display:inline-flex;
+  align-items:center;
+  min-height:38px;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  color:rgba(255,255,255,.92);
+  font-size:.86rem;
+  font-weight:900;
+  backdrop-filter:blur(10px);
+}
+.postcard-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.porto-postcard{
+  position:relative;
+  overflow:hidden;
+  min-height:224px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  padding:20px;
+  border:1px solid rgba(255,255,255,.26);
+  border-radius:var(--radius);
+  background-image:
+    linear-gradient(180deg,rgba(6,19,24,.04) 0%,rgba(6,19,24,.82) 100%),
+    var(--postcard-image);
+  background-size:cover;
+  background-position:center;
+  box-shadow:0 24px 58px rgba(6,19,24,.3);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.porto-postcard:hover{
+  transform:translateY(-5px);
+  border-color:rgba(239,180,71,.5);
+  box-shadow:0 30px 72px rgba(6,19,24,.4);
+}
+.porto-postcard:nth-child(1){
+  --postcard-image:url("assets/porto-card-sao-bento.jpg");
+  background-position:center 58%;
+}
+.porto-postcard:nth-child(2){
+  --postcard-image:url("assets/porto-card-cathedral.jpg");
+  background-position:center 42%;
+}
+.porto-postcard:nth-child(3){
+  --postcard-image:url("assets/porto-card-ribeira.jpg");
+  background-position:center 54%;
+}
+.porto-postcard:nth-child(4){
+  --postcard-image:url("assets/porto-card-bridge.jpg");
+  background-position:center;
+}
+.porto-postcard:nth-child(5){
+  --postcard-image:url("assets/porto-card-secret.jpg");
+  background-position:center 46%;
+}
+.porto-postcard:nth-child(6){
+  --postcard-image:url("assets/porto-card-wine.jpg");
+  background-position:center 55%;
+}
+.porto-postcard span,
+.porto-postcard strong,
+.porto-postcard p{
+  position:relative;
+  z-index:1;
+}
+.porto-postcard span{
+  width:auto;
+  max-width:100%;
+  min-height:36px;
+  display:grid;
+  place-items:center;
+  padding:0 11px;
+  margin-bottom:auto;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  color:var(--gold);
+  font-size:.8rem;
+  font-weight:950;
+  line-height:1.05;
+  text-align:center;
+  backdrop-filter:blur(10px);
+}
+.porto-postcard strong{
+  align-self:stretch;
+  display:block;
+  margin-top:34px;
+  color:white;
+  font-size:1.2rem;
+  line-height:1.14;
+}
+.porto-postcard p{
+  align-self:stretch;
+  margin:8px 0 0;
+  color:rgba(255,255,255,.82);
+  font-size:.92rem;
+  font-weight:750;
+  line-height:1.38;
 }
 
 /* Sections and grids */
@@ -853,10 +1037,27 @@ span.mobile-copy{display:none}
   margin-bottom:14px;
 }
 .reviews-section{
-  background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(233,244,244,.54));
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.44),rgba(233,244,244,.72)),
+    linear-gradient(90deg,rgba(18,110,166,.04) 1px,transparent 1px),
+    linear-gradient(180deg,rgba(182,82,52,.035) 1px,transparent 1px);
+  background-size:auto,56px 56px,56px 56px;
+}
+.reviews-section:before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:8px;
+  background:linear-gradient(90deg,var(--azulejo),var(--gold),var(--terracotta),var(--vine));
+}
+.reviews-section .container{
+  position:relative;
 }
 .reviews-grid{
   align-items:stretch;
+  grid-auto-flow:dense;
 }
 .review-card{
   display:flex;
@@ -868,10 +1069,39 @@ span.mobile-copy{display:none}
 .review-stars{color:#d88315;font-weight:950;letter-spacing:0}
 .review-text{color:var(--ink);font-size:1.05rem;font-weight:750;line-height:1.45}
 .review-meta{color:var(--muted);font-size:.92rem;font-weight:850;margin-top:auto}
+.review-card:first-child{
+  grid-column:span 2;
+  min-height:100%;
+  padding:30px;
+  justify-content:flex-end;
+  background:
+    linear-gradient(135deg,rgba(16,34,42,.94),rgba(10,66,95,.82) 54%,rgba(182,82,52,.66)),
+    url("assets/porto-hero.jpg");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  box-shadow:0 24px 68px rgba(16,34,42,.16);
+}
+.review-card:first-child .review-stars{
+  color:var(--gold);
+  font-size:1.08rem;
+}
+.review-card:first-child .review-text{
+  max-width:760px;
+  color:white;
+  font-size:1.24rem;
+  line-height:1.42;
+}
+.review-card:first-child .review-meta{
+  color:rgba(255,255,255,.78);
+}
 .reviews-section:not(:has(.review-card)){display:none}
 
 /* Review submission */
-.review-submit-section{padding-top:42px}
+.review-submit-section{
+  padding-top:42px;
+  padding-bottom:24px;
+}
 .review-submit-panel{
   display:grid;
   grid-template-columns:minmax(0,.86fr) minmax(320px,1.14fr);
@@ -1035,19 +1265,6 @@ span.mobile-copy{display:none}
 .booking-panel .btn{
   width:100%;
 }
-.booking-phone{
-  margin:0;
-  width:auto;
-  color:rgba(255,255,255,.88);
-  font-size:.96rem;
-  font-weight:850;
-}
-.booking-phone a{
-  color:white;
-  border-bottom:2px solid rgba(239,180,71,.86);
-}
-.booking-phone a:hover{color:var(--gold)}
-
 /* Booking modal */
 body.modal-open{overflow:hidden}
 .booking-modal[hidden]{display:none}
@@ -1222,18 +1439,6 @@ body.modal-open{overflow:hidden}
   outline:3px solid rgba(239,180,71,.54);
   border-color:rgba(18,110,166,.4);
 }
-.booking-contact-line{
-  padding:13px 15px;
-  border:1px solid rgba(37,211,102,.24);
-  border-radius:var(--radius);
-  background:rgba(37,211,102,.08);
-}
-.booking-contact-line a{
-  color:#0f8f49;
-  font-weight:950;
-  border-bottom:2px solid rgba(15,143,73,.22);
-}
-.booking-contact-line a:hover{border-bottom-color:rgba(15,143,73,.7)}
 .booking-submit{justify-self:start;margin-top:4px}
 .booking-actions{margin-top:2px}
 .booking-actions .form-status:empty{display:none}
@@ -1257,10 +1462,51 @@ body.modal-open{overflow:hidden}
 .faq p{margin-bottom:0;color:var(--muted);font-weight:650}
 
 /* Footer and floating action */
-.footer{padding:46px 0 56px;color:var(--muted);font-weight:750}
-.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+.footer-signature-wrap{
+  width:min(1120px,92%);
+  margin:0 auto -4px;
+  display:flex;
+  justify-content:center;
+  pointer-events:none;
+}
+.footer-signature{
+  width:124px;
+  height:auto;
+  opacity:1;
+  filter:none;
+  transform:rotate(-2deg);
+}
+.footer{padding:12px 0 58px;color:var(--muted);font-weight:750}
+.footer-inner{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  flex-wrap:wrap;
+  border-top:1px solid var(--line);
+  padding-top:24px;
+}
 .footer a:hover{color:var(--azulejo-dark)}
-.whatsapp-float{
+.photo-credits{
+  width:100%;
+  margin-top:10px;
+  color:rgba(83,97,107,.8);
+  font-size:.78rem;
+  font-weight:650;
+}
+.photo-credits summary{
+  display:inline-flex;
+  color:var(--muted);
+  cursor:pointer;
+  font-weight:850;
+}
+.photo-credits p{
+  max-width:860px;
+  margin:7px 0 0;
+  line-height:1.45;
+}
+.availability-float{
   position:fixed;
   right:18px;
   bottom:18px;
@@ -1270,25 +1516,33 @@ body.modal-open{overflow:hidden}
   align-items:center;
   justify-content:center;
   gap:9px;
-  padding:10px 16px;
+  padding:14px 21px;
   border-radius:999px;
-  background:#25d366;
-  color:white;
+  background:linear-gradient(135deg,var(--gold),#f47b42);
+  color:#281300;
   font-weight:950;
   line-height:1.05;
-  box-shadow:0 16px 34px rgba(16,34,42,.26);
+  box-shadow:
+    0 16px 34px rgba(244,123,66,.3),
+    0 0 0 1px rgba(255,255,255,.42) inset;
+  transition:transform .18s ease,box-shadow .18s ease;
 }
-.whatsapp-float span{
-  font-size:.74rem;
-  letter-spacing:0;
-  text-transform:uppercase;
-  opacity:.88;
+.availability-float:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 20px 42px rgba(244,123,66,.4),
+    0 0 0 1px rgba(255,255,255,.52) inset;
 }
-.whatsapp-float strong{
-  font-size:.98rem;
+.availability-float:focus-visible{
+  outline:3px solid rgba(239,180,71,.72);
+  outline-offset:3px;
+}
+.availability-float span{
+  font-size:.92rem;
   letter-spacing:0;
   white-space:nowrap;
 }
+body.modal-open .availability-float{display:none}
 
 /* Motion */
 @media (prefers-reduced-motion:no-preference){
@@ -1342,6 +1596,8 @@ body.modal-open{overflow:hidden}
   .hero{min-height:auto;padding:62px 0 46px}
   .hero-shell{grid-template-columns:1fr;gap:30px}
   .hero-highlights{max-width:540px}
+  .postcard-shell{grid-template-columns:1fr}
+  .porto-postcards-section .postcard-copy h2{font-size:2.65rem}
   .hero-info-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
   .top-review-inner{
     grid-template-columns:1fr;
@@ -1557,6 +1813,39 @@ body.modal-open{overflow:hidden}
   .top-review span{
     font-size:.74rem;
   }
+  .porto-postcards-section{
+    padding:54px 0;
+    background-position:center;
+  }
+  .postcard-shell{gap:22px}
+  .porto-postcards-section .postcard-copy h2{
+    font-size:2.02rem;
+    line-height:1.08;
+  }
+  .route-line{
+    gap:8px;
+    margin-top:18px;
+  }
+  .route-line span{
+    min-height:34px;
+    padding:7px 10px;
+    font-size:.76rem;
+  }
+  .postcard-grid{grid-template-columns:1fr}
+  .porto-postcard{
+    min-height:210px;
+    padding:18px;
+  }
+  .porto-postcard:hover{transform:none}
+  .porto-postcard strong{font-size:1.08rem}
+  .review-card:first-child{
+    grid-column:auto;
+    padding:22px;
+  }
+  .review-card:first-child .review-text{
+    font-size:1.05rem;
+    line-height:1.45;
+  }
   .steps-grid{border-radius:12px}
   .steps-grid .step-card{padding:20px}
   .guides-section{padding-top:54px}
@@ -1565,7 +1854,10 @@ body.modal-open{overflow:hidden}
     padding:26px 22px;
     border-radius:16px;
   }
-  .review-submit-section{padding-top:30px}
+  .review-submit-section{
+    padding-top:30px;
+    padding-bottom:20px;
+  }
   .review-submit-panel{
     gap:22px;
     padding:26px 22px;
@@ -1672,7 +1964,6 @@ body.modal-open{overflow:hidden}
     padding:9px 11px;
     font-size:.96rem;
   }
-  .booking-contact-line{display:none}
   .booking-actions{
     gap:8px;
     margin-top:0;
@@ -1684,9 +1975,9 @@ body.modal-open{overflow:hidden}
     margin-top:0;
   }
   .modal-open .nav .btn,
-  .modal-open .whatsapp-float{display:none}
+  .modal-open .availability-float{display:none}
   .footer{padding-bottom:120px}
-  .whatsapp-float{
+  .availability-float{
     display:none;
   }
 }
@@ -1730,10 +2021,21 @@ body.modal-open{overflow:hidden}
     overflow-wrap:break-word;
   }
   .hero-actions{width:auto;max-width:100%}
-  .hero-copy,.hero-highlights,.guide-panel,.review-submit-panel,.card{max-width:100%}
+  .hero-copy,.hero-highlights,.guide-panel,.review-submit-panel,.card,.porto-postcard{max-width:100%}
   .card{padding:21px}
   .booking-card{padding:48px 0}
   .quick-facts div{border-top:0}
   .footer-inner{display:block}
+  .footer-inner{
+    padding-bottom:0;
+  }
   .footer-inner div+div{margin-top:12px}
+  .footer-signature-wrap{
+    justify-content:center;
+    margin-bottom:-4px;
+  }
+  .footer-signature{
+    width:104px;
+    opacity:1;
+  }
 }

@@ -1,5 +1,4 @@
 const WHATSAPP_PHONE = '351933221858';
-const WHATSAPP_DISPLAY = '+351 937 106 777';
 const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
 const MOBILE_BOOKING_QUERY = '(max-width: 760px)';
 const BOOKING_CONFIRMATION_COPY = "We'll confirm availability and send the meeting point by WhatsApp.";
@@ -141,10 +140,6 @@ function ensureBookingModal() {
               <input type="number" name="guests" min="1" max="30" value="2" required />
             </label>
           </div>
-
-          <p class="booking-contact-line">
-            Prefer WhatsApp? <a href="${getWhatsAppUrl()}" target="_blank" rel="noopener">${WHATSAPP_DISPLAY}</a>
-          </p>
 
           <div class="form-actions booking-actions">
             <button class="btn sun booking-submit" type="submit" data-booking-submit>Send request</button>
