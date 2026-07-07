@@ -1,6 +1,8 @@
 const WHATSAPP_PHONE = '351933221858';
 const WEB3FORMS_ACCESS_KEY = '9f9a1675-060f-491a-bee9-6dbded9e081b';
 const MOBILE_BOOKING_QUERY = '(max-width: 760px)';
+const PORTUGAL_TIME_ZONE = 'Europe/Lisbon';
+const SAME_DAY_BOOKING_CUTOFF_HOUR = 19;
 const BOOKING_CONFIRMATION_COPY = "We'll confirm availability and send the meeting point by WhatsApp.";
 const BOOKING_INTRO_COPY = `Choose your date and group size. ${BOOKING_CONFIRMATION_COPY}`;
 let bookingLastFocus = null;
@@ -16,13 +18,53 @@ function getWhatsAppUrl(message = '') {
   return message ? `${baseUrl}?text=${encodeURIComponent(message)}` : baseUrl;
 }
 
-function getTodayInputValue() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
+function getPortugalDateParts(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: PORTUGAL_TIME_ZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(date);
 
-  return `${year}-${month}-${day}`;
+  return Object.fromEntries(parts.map((part) => [part.type, part.value]));
+}
+
+function formatInputDateFromParts(year, month, day) {
+  const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+
+  return [
+    date.getUTCFullYear(),
+    String(date.getUTCMonth() + 1).padStart(2, '0'),
+    String(date.getUTCDate()).padStart(2, '0'),
+  ].join('-');
+}
+
+function getEarliestBookingDateInputValue(date = new Date()) {
+  const portugalDate = getPortugalDateParts(date);
+  const dayOffset = Number(portugalDate.hour) >= SAME_DAY_BOOKING_CUTOFF_HOUR ? 1 : 0;
+  const earliestDate = new Date(Date.UTC(
+    Number(portugalDate.year),
+    Number(portugalDate.month) - 1,
+    Number(portugalDate.day) + dayOffset
+  ));
+
+  return formatInputDateFromParts(
+    earliestDate.getUTCFullYear(),
+    earliestDate.getUTCMonth() + 1,
+    earliestDate.getUTCDate()
+  );
+}
+
+function syncBookingDateInput(dateInput, forceDefault = false) {
+  const earliestDate = getEarliestBookingDateInputValue();
+
+  dateInput.min = earliestDate;
+
+  if (forceDefault || !dateInput.value || dateInput.value < earliestDate) {
+    dateInput.value = earliestDate;
+  }
 }
 
 function formatBookingDate(value) {
@@ -155,8 +197,7 @@ function ensureBookingModal() {
   const dateInput = form.elements.date;
   const bookingMediaQuery = window.matchMedia(MOBILE_BOOKING_QUERY);
 
-  dateInput.min = getTodayInputValue();
-  dateInput.value = dateInput.min;
+  syncBookingDateInput(dateInput, true);
   updateBookingFunnelMode(form);
 
   const handleBookingModeChange = () => updateBookingFunnelMode(form);
@@ -208,8 +249,7 @@ function ensureBookingModal() {
     submitWeb3Form(event, form, {
       onSuccess: () => {
         form.reset();
-        dateInput.min = getTodayInputValue();
-        dateInput.value = dateInput.min;
+        syncBookingDateInput(dateInput, true);
       },
     });
   });
@@ -351,7 +391,9 @@ function openBookingModal() {
 
   const modal = document.querySelector('[data-booking-modal]');
   const form = modal.querySelector('[data-booking-form]');
+  const dateInput = form.elements.date;
   bookingLastFocus = document.activeElement;
+  syncBookingDateInput(dateInput);
   updateBookingFunnelMode(form);
   modal.hidden = false;
   document.body.classList.add('modal-open');
