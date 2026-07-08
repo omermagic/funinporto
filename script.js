@@ -4,6 +4,16 @@ const MOBILE_BOOKING_QUERY = '(max-width: 760px)';
 const PORTUGAL_TIME_ZONE = 'Europe/Lisbon';
 const SAME_DAY_BOOKING_CUTOFF_HOUR = 19;
 const STICKY_AVAILABILITY_SCROLL_THRESHOLD = 80;
+const MIN_PHONE_DIGITS = 6;
+const DATE_PICKER_NAVIGATION_KEYS = new Set([
+  'Tab',
+  'Escape',
+  'Enter',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowUp',
+  'ArrowDown',
+]);
 const BOOKING_CONFIRMATION_COPY = "We'll confirm availability and send the meeting point by WhatsApp.";
 const BOOKING_INTRO_COPY = `Choose your date and group size. ${BOOKING_CONFIRMATION_COPY}`;
 let bookingLastFocus = null;
@@ -66,6 +76,8 @@ function syncBookingDateInput(dateInput, forceDefault = false) {
   if (forceDefault || !dateInput.value || dateInput.value < earliestDate) {
     dateInput.value = earliestDate;
   }
+
+  updateBookingDateDisplay(dateInput);
 }
 
 function formatBookingDate(value) {
@@ -74,12 +86,107 @@ function formatBookingDate(value) {
   const [year, month, day] = value.split('-').map(Number);
   const date = new Date(year, month - 1, day);
 
-  return new Intl.DateTimeFormat('en', {
-    weekday: 'short',
-    month: 'short',
+  return new Intl.DateTimeFormat('en-GB', {
+    weekday: 'long',
     day: 'numeric',
+    month: 'long',
     year: 'numeric',
   }).format(date);
+}
+
+function updateBookingDateDisplay(dateInput) {
+  const dateDisplay = dateInput
+    .closest('[data-booking-date-field]')
+    ?.querySelector('[data-booking-date-display]');
+
+  if (!dateDisplay) return;
+
+  const formattedDate = formatBookingDate(dateInput.value);
+
+  dateDisplay.textContent = formattedDate || 'Select a date';
+  dateDisplay.setAttribute(
+    'aria-label',
+    formattedDate ? `Tour date, ${formattedDate}` : 'Select tour date'
+  );
+}
+
+function openBookingDatePicker(dateInput) {
+  dateInput.focus({ preventScroll: true });
+
+  try {
+    if (typeof dateInput.showPicker === 'function') {
+      dateInput.showPicker();
+      return;
+    }
+  } catch (error) {
+    // Fall through to the click fallback for browsers with partial support.
+  }
+
+  dateInput.click();
+}
+
+function setupBookingDatePicker(form) {
+  if (form.dataset.bookingDatePickerReady === 'true') return;
+
+  const dateInput = form.elements.date;
+  const dateDisplay = form.querySelector('[data-booking-date-display]');
+
+  if (!dateInput || !dateDisplay) return;
+
+  form.dataset.bookingDatePickerReady = 'true';
+  updateBookingDateDisplay(dateInput);
+
+  dateDisplay.addEventListener('click', () => {
+    openBookingDatePicker(dateInput);
+  });
+
+  dateInput.addEventListener('input', () => updateBookingDateDisplay(dateInput));
+  dateInput.addEventListener('change', () => updateBookingDateDisplay(dateInput));
+
+  dateInput.addEventListener('keydown', (event) => {
+    if (
+      !event.metaKey &&
+      !event.ctrlKey &&
+      !event.altKey &&
+      !DATE_PICKER_NAVIGATION_KEYS.has(event.key)
+    ) {
+      event.preventDefault();
+    }
+  });
+
+  dateInput.addEventListener('paste', (event) => event.preventDefault());
+  dateInput.addEventListener('drop', (event) => event.preventDefault());
+}
+
+function hasEnoughPhoneDigits(value) {
+  return value.replace(/\D/g, '').length >= MIN_PHONE_DIGITS;
+}
+
+function updateBookingPhoneValidation(phoneInput) {
+  if (!phoneInput || phoneInput.disabled) return true;
+
+  const phone = phoneInput.value.trim();
+
+  phoneInput.setCustomValidity('');
+
+  if (phone && !hasEnoughPhoneDigits(phone)) {
+    phoneInput.setCustomValidity('Please enter a WhatsApp number with at least 6 digits.');
+  }
+
+  return phoneInput.checkValidity();
+}
+
+function setupBookingPhoneValidation(form) {
+  if (form.dataset.bookingPhoneValidationReady === 'true') return;
+
+  const phoneInput = form.elements.phone;
+
+  if (!phoneInput) return;
+
+  form.dataset.bookingPhoneValidationReady = 'true';
+
+  phoneInput.addEventListener('input', () => updateBookingPhoneValidation(phoneInput));
+  phoneInput.addEventListener('blur', () => updateBookingPhoneValidation(phoneInput));
 }
 
 function isMobileBookingFunnel() {
@@ -100,6 +207,11 @@ function updateBookingFunnelMode(form) {
     phoneField.hidden = isMobile;
     phoneInput.disabled = isMobile;
     phoneInput.required = !isMobile;
+    phoneInput.setCustomValidity('');
+
+    if (!isMobile) {
+      updateBookingPhoneValidation(phoneInput);
+    }
   }
 
   if (submitButton) {
@@ -173,9 +285,12 @@ function ensureBookingModal() {
           </div>
 
           <div class="form-row">
-            <label>
+            <label data-booking-date-field>
               <span>Tour date</span>
-              <input type="date" name="date" required />
+              <span class="booking-date-shell">
+                <button class="booking-date-display" type="button" data-booking-date-display>Select a date</button>
+                <input class="booking-date-input" type="date" name="date" autocomplete="off" inputmode="none" tabindex="-1" aria-hidden="true" required />
+              </span>
             </label>
 
             <label>
@@ -199,6 +314,8 @@ function ensureBookingModal() {
   const bookingMediaQuery = window.matchMedia(MOBILE_BOOKING_QUERY);
 
   syncBookingDateInput(dateInput, true);
+  setupBookingDatePicker(form);
+  setupBookingPhoneValidation(form);
   updateBookingFunnelMode(form);
 
   const handleBookingModeChange = () => updateBookingFunnelMode(form);
@@ -222,6 +339,11 @@ function ensureBookingModal() {
     const date = formatBookingDate(String(formData.get('date') || ''));
     const guests = String(formData.get('guests') || '').trim();
     const isMobile = form.dataset.bookingMode === 'whatsapp';
+
+    if (!isMobile && !updateBookingPhoneValidation(form.elements.phone)) {
+      form.reportValidity();
+      return;
+    }
 
     const message = [
       isMobile
