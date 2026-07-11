@@ -92,6 +92,34 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://funinporto.com/#website",
+            "name": "Fun in Porto",
+            "alternateName": "FunInPorto",
+            "url": "https://funinporto.com/",
+            "publisher": {
+              "@id": "https://funinporto.com/#organization"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://funinporto.com/#organization",
+            "name": "Fun in Porto",
+            "alternateName": "FunInPorto",
+            "url": "https://funinporto.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://funinporto.com/favicon.svg"
+            }
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
         "@type": ["TouristTrip", "Service"],
         "name": "Free Walking Tour Porto",
         "alternateName": "Fun in Porto",
@@ -113,10 +141,7 @@
           }
         },
         "provider": {
-          "@type": "Organization",
-          "name": "Fun in Porto",
-          "url": "https://funinporto.com/",
-          "logo": "https://funinporto.com/favicon.svg"
+          "@id": "https://funinporto.com/#organization"
         },
         "offers": {
           "@type": "Offer",
