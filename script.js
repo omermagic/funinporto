@@ -766,6 +766,16 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
   element.textContent = new Date().getFullYear();
 });
 
+document.querySelectorAll("[data-current-month-year]").forEach((element) => {
+  const now = new Date();
+
+  element.dateTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  element.textContent = new Intl.DateTimeFormat("en", {
+    month: "long",
+    year: "numeric",
+  }).format(now);
+});
+
 document.querySelectorAll("[data-review-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     submitWeb3Form(event, form, {
