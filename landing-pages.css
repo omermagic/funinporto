@@ -610,6 +610,9 @@
 .recommendation-facts a { color: var(--blue); text-underline-offset: 3px; }
 .recommendation-owned { margin-top: 20px; padding: 30px 26px; border: 1px solid rgba(239,180,71,.42); border-radius: var(--radius); background: linear-gradient(135deg,#fff,rgba(239,180,71,.15)); box-shadow: var(--shadow); }
 .recommendation-owned .recommendation-index { background: linear-gradient(135deg,var(--gold),#f47b42); color: #281300; }
+.recommendation-owned-image { display: none; grid-column: 2 / -1; margin: 4px 0 0; }
+.recommendation-owned-image img { display: block; width: 100%; height: auto; max-height: 620px; border-radius: 16px; object-fit: contain; background: #edf3f2; }
+.recommendation-owned-image figcaption { margin-top: 9px; color: var(--muted); font-size: .78rem; font-weight: 700; }
 .owned-disclosure { display: inline-block; margin-bottom: 9px; color: var(--terracotta); font-size: .7rem; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
 
 /* Editorial guides */
@@ -1108,4 +1111,5 @@
   .recommendation-owned {
     padding: 24px 18px;
   }
+  .recommendation-owned-image { display: block; grid-column: 1 / -1; margin-top: 0; }
 }
