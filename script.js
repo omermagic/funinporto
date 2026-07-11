@@ -132,6 +132,23 @@ const BOOKING_CONTEXTS = {
     requestIntro: "New private Porto tour request.",
     confirm: "Please confirm availability and send the private tour options.",
   },
+  family: {
+    locale: "en-GB",
+    tour: "Family Porto tour enquiry",
+    subject: "New family Porto tour enquiry",
+    title: "Ask about a family tour",
+    intro:
+      "Choose your preferred date and group size. Include the children's ages when we continue on WhatsApp so we can recommend the best format.",
+    reassurance: "Family-friendly options · Reply by WhatsApp",
+    submit: "Send family tour enquiry",
+    success:
+      "Thanks — we got your family tour enquiry.\n\nWe'll reply by WhatsApp to learn the children's ages and suggest the best option.",
+    messageIntro:
+      "Hi, I would like advice about a family Porto tour with Fun in Porto.",
+    requestIntro: "New family Porto tour enquiry.",
+    confirm:
+      "Please reply with the best family tour options. I can share the children's ages on WhatsApp.",
+  },
 };
 
 function getBookingCopy() {
@@ -140,6 +157,7 @@ function getBookingCopy() {
   if (path.includes("porto-walking-tour-hebrew")) key = "hebrew";
   if (path.includes("walking-tour-spanish")) key = "spanish";
   if (path.includes("private-tours-porto")) key = "private";
+  if (path.includes("porto-with-kids-and-teenagers")) key = "family";
   return {
     ...BOOKING_CONTEXTS.english,
     ...BOOKING_CONTEXTS[key],
