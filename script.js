@@ -14,8 +14,46 @@ const DATE_PICKER_NAVIGATION_KEYS = new Set([
   'ArrowUp',
   'ArrowDown',
 ]);
-const BOOKING_CONFIRMATION_COPY = "We'll confirm availability and send the meeting point by WhatsApp.";
-const BOOKING_INTRO_COPY = `Choose your date and group size. ${BOOKING_CONFIRMATION_COPY}`;
+const BOOKING_CONTEXTS = {
+  english: {
+    locale: 'en-GB', tour: 'English Porto walking tour', subject: 'New Fun in Porto availability request',
+    title: 'Check availability', close: 'Close booking form', intro: "Choose your date and group size. We'll confirm availability and send the meeting point by WhatsApp.",
+    reassurance: 'Free booking · Confirmation by WhatsApp', name: 'Your name', phone: 'WhatsApp number', date: 'Tour date', selectDate: 'Select a date', group: 'Group size', submit: 'Send request',
+    success: "Thanks — we got your request.\n\nWe'll confirm availability and send the meeting point by WhatsApp.\n\nNo payment today. The tour is free to join, and you can tip at the end based on your experience.",
+    error: 'Something went wrong. Please send us a WhatsApp message instead.', sending: 'Sending your request...', sendingButton: 'Sending...', opening: 'Opening WhatsApp...', phoneError: 'Please enter a WhatsApp number with at least 6 digits.',
+    messageIntro: 'Hi, I would like to check availability for a Fun in Porto tour.', requestIntro: 'New Fun in Porto availability request.', labels: { tour: 'Tour type', name: 'Name', phone: 'WhatsApp number', date: 'Date', group: 'Group size' }, confirm: 'Please confirm availability and send the meeting point.'
+  },
+  hebrew: {
+    locale: 'he-IL', tour: 'סיור רגלי בפורטו בעברית', subject: 'בקשת זמינות חדשה — סיור בפורטו בעברית',
+    title: 'בדיקת זמינות', close: 'סגירת טופס ההזמנה', intro: 'בחרו תאריך וגודל קבוצה. נאשר זמינות ונשלח את נקודת המפגש בוואטסאפ.',
+    reassurance: 'הזמנה ללא תשלום · אישור בוואטסאפ', name: 'שם', phone: 'מספר וואטסאפ', date: 'תאריך הסיור', selectDate: 'בחירת תאריך', group: 'מספר משתתפים', submit: 'שליחת בקשה',
+    success: 'תודה — קיבלנו את הבקשה.\n\nנאשר זמינות ונשלח את נקודת המפגש בוואטסאפ.', error: 'משהו השתבש. אפשר לשלוח לנו הודעה בוואטסאפ.', sending: 'הבקשה נשלחת...', sendingButton: 'שולחים...', opening: 'פותחים את וואטסאפ...', phoneError: 'יש להזין מספר וואטסאפ עם 6 ספרות לפחות.',
+    messageIntro: 'היי, אשמח לבדוק זמינות לסיור של Fun in Porto.', requestIntro: 'בקשת זמינות חדשה לסיור של Fun in Porto.', labels: { tour: 'סוג הסיור', name: 'שם', phone: 'מספר וואטסאפ', date: 'תאריך', group: 'מספר משתתפים' }, confirm: 'אשמח לאישור זמינות ולפרטי נקודת המפגש.'
+  },
+  spanish: {
+    locale: 'es-ES', tour: 'Tour a pie por Oporto en español', subject: 'Nueva solicitud — tour por Oporto en español',
+    title: 'Consultar disponibilidad', close: 'Cerrar el formulario de reserva', intro: 'Elige la fecha y el tamaño del grupo. Confirmaremos la disponibilidad y enviaremos el punto de encuentro por WhatsApp.',
+    reassurance: 'Reserva gratuita · Confirmación por WhatsApp', name: 'Tu nombre', phone: 'Número de WhatsApp', date: 'Fecha del tour', selectDate: 'Selecciona una fecha', group: 'Número de personas', submit: 'Enviar solicitud',
+    success: 'Gracias, hemos recibido tu solicitud.\n\nConfirmaremos la disponibilidad y enviaremos el punto de encuentro por WhatsApp.', error: 'Algo salió mal. Envíanos un mensaje por WhatsApp.', sending: 'Enviando tu solicitud...', sendingButton: 'Enviando...', opening: 'Abriendo WhatsApp...', phoneError: 'Introduce un número de WhatsApp con al menos 6 dígitos.',
+    messageIntro: 'Hola, quisiera consultar la disponibilidad de un tour de Fun in Porto.', requestIntro: 'Nueva solicitud de disponibilidad para Fun in Porto.', labels: { tour: 'Tipo de tour', name: 'Nombre', phone: 'Número de WhatsApp', date: 'Fecha', group: 'Número de personas' }, confirm: 'Por favor, confirma la disponibilidad y envía el punto de encuentro.'
+  },
+  private: {
+    locale: 'en-GB', tour: 'Private Porto tour', subject: 'New private Porto tour request',
+    title: 'Plan your private tour', intro: "Choose your preferred date and group size. We'll reply by WhatsApp with availability and tailored options.",
+    reassurance: 'Personal proposal · Confirmation by WhatsApp', submit: 'Send private tour request',
+    success: "Thanks — we got your private tour request.\n\nWe'll reply by WhatsApp with availability and tailored options.",
+    messageIntro: 'Hi, I would like to plan a private Porto tour with Fun in Porto.', requestIntro: 'New private Porto tour request.', confirm: 'Please confirm availability and send the private tour options.'
+  }
+};
+
+function getBookingCopy() {
+  const path = window.location.pathname;
+  let key = 'english';
+  if (path.includes('porto-walking-tour-hebrew')) key = 'hebrew';
+  if (path.includes('walking-tour-spanish')) key = 'spanish';
+  if (path.includes('private-tours-porto')) key = 'private';
+  return { ...BOOKING_CONTEXTS.english, ...BOOKING_CONTEXTS[key], labels: { ...BOOKING_CONTEXTS.english.labels, ...(BOOKING_CONTEXTS[key].labels || {}) } };
+}
 let bookingLastFocus = null;
 let reviewLastFocus = null;
 
@@ -86,7 +124,7 @@ function formatBookingDate(value) {
   const [year, month, day] = value.split('-').map(Number);
   const date = new Date(year, month - 1, day);
 
-  return new Intl.DateTimeFormat('en-GB', {
+  return new Intl.DateTimeFormat(getBookingCopy().locale, {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -103,10 +141,11 @@ function updateBookingDateDisplay(dateInput) {
 
   const formattedDate = formatBookingDate(dateInput.value);
 
-  dateDisplay.textContent = formattedDate || 'Select a date';
+  const copy = getBookingCopy();
+  dateDisplay.textContent = formattedDate || copy.selectDate;
   dateDisplay.setAttribute(
     'aria-label',
-    formattedDate ? `Tour date, ${formattedDate}` : 'Select tour date'
+    formattedDate ? `${copy.date}, ${formattedDate}` : copy.selectDate
   );
 }
 
@@ -170,7 +209,7 @@ function updateBookingPhoneValidation(phoneInput) {
   phoneInput.setCustomValidity('');
 
   if (phone && !hasEnoughPhoneDigits(phone)) {
-    phoneInput.setCustomValidity('Please enter a WhatsApp number with at least 6 digits.');
+    phoneInput.setCustomValidity(getBookingCopy().phoneError);
   }
 
   return phoneInput.checkValidity();
@@ -194,6 +233,7 @@ function isMobileBookingFunnel() {
 }
 
 function updateBookingFunnelMode(form) {
+  const copy = getBookingCopy();
   const isMobile = isMobileBookingFunnel();
   const phoneField = form.querySelector('[data-booking-phone-field]');
   const phoneInput = form.elements.phone;
@@ -215,20 +255,22 @@ function updateBookingFunnelMode(form) {
   }
 
   if (submitButton) {
-    submitButton.textContent = 'Send request';
+    submitButton.textContent = copy.submit;
   }
 
   if (intro) {
-    intro.textContent = BOOKING_INTRO_COPY;
+    intro.textContent = copy.intro;
   }
 
   if (reassurance) {
-    reassurance.textContent = 'Free booking · Confirmation by WhatsApp';
+    reassurance.textContent = copy.reassurance;
   }
 }
 
 function ensureBookingModal() {
   if (document.querySelector('[data-booking-modal]')) return;
+
+  const copy = getBookingCopy();
 
   document.body.insertAdjacentHTML('beforeend', `
     <div class="booking-modal booking-tour-modal" data-booking-modal hidden>
@@ -247,13 +289,13 @@ function ensureBookingModal() {
           <span>Cathedral hill</span>
         </div>
       </div>
-      <section class="booking-dialog" role="dialog" aria-modal="true" aria-label="Check availability">
-        <button class="booking-close" type="button" data-booking-close aria-label="Close booking form">×</button>
+      <section class="booking-dialog" role="dialog" aria-modal="true" aria-label="${copy.title}">
+        <button class="booking-close" type="button" data-booking-close aria-label="${copy.close}">×</button>
 
         <div class="booking-dialog-copy">
-          <span class="guide-tag">Check availability</span>
-          <p data-booking-intro>${BOOKING_INTRO_COPY}</p>
-          <p class="booking-reassurance" data-modal-booking-reassurance>Free booking · Confirmation by WhatsApp</p>
+          <span class="guide-tag">${copy.title}</span>
+          <p data-booking-intro>${copy.intro}</p>
+          <p class="booking-reassurance" data-modal-booking-reassurance>${copy.reassurance}</p>
         </div>
 
         <form
@@ -261,46 +303,47 @@ function ensureBookingModal() {
           action="https://api.web3forms.com/submit"
           method="POST"
           data-booking-form
-          data-success-message="Thanks — we got your request.&#10;&#10;We'll confirm availability and send the meeting point by WhatsApp.&#10;&#10;No payment today. The tour is free to join, and you can tip at the end based on your experience."
-          data-error-message="Something went wrong. Please send us a WhatsApp message instead."
-          data-sending-message="Sending your request..."
+          data-success-message="${copy.success}"
+          data-error-message="${copy.error}"
+          data-sending-message="${copy.sending}"
+          data-sending-button="${copy.sendingButton}"
         >
           <input type="hidden" name="access_key" value="${WEB3FORMS_ACCESS_KEY}" />
-          <input type="hidden" name="subject" value="New Fun in Porto availability request" />
+          <input type="hidden" name="subject" value="${copy.subject}" />
           <input type="hidden" name="from_name" value="Fun in Porto website" />
-          <input type="hidden" name="tour" value="Porto walking tour" />
+          <input type="hidden" name="tour" value="${copy.tour}" />
           <input type="hidden" name="message" value="" />
           <input type="checkbox" name="botcheck" class="bot-field" tabindex="-1" autocomplete="off" />
 
           <div class="form-row">
             <label>
-              <span>Your name</span>
+              <span>${copy.name}</span>
               <input type="text" name="name" autocomplete="name" required />
             </label>
 
             <label data-booking-phone-field>
-              <span>WhatsApp number</span>
+              <span>${copy.phone}</span>
               <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+351 ..." required />
             </label>
           </div>
 
           <div class="form-row">
             <label data-booking-date-field>
-              <span>Tour date</span>
+              <span>${copy.date}</span>
               <span class="booking-date-shell">
-                <button class="booking-date-display" type="button" data-booking-date-display>Select a date</button>
+                <button class="booking-date-display" type="button" data-booking-date-display>${copy.selectDate}</button>
                 <input class="booking-date-input" type="date" name="date" autocomplete="off" inputmode="none" tabindex="-1" aria-hidden="true" required />
               </span>
             </label>
 
             <label>
-              <span>Group size</span>
+              <span>${copy.group}</span>
               <input type="number" name="guests" min="1" max="30" value="2" required />
             </label>
           </div>
 
           <div class="form-actions booking-actions">
-            <button class="btn sun booking-submit" type="submit" data-booking-submit>Send request</button>
+            <button class="btn sun booking-submit" type="submit" data-booking-submit>${copy.submit}</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </div>
         </form>
@@ -346,14 +389,13 @@ function ensureBookingModal() {
     }
 
     const message = [
-      isMobile
-        ? 'Hi, I would like to join the Fun in Porto free walking tour.'
-        : 'New availability request for Fun in Porto walking tour.',
-      `Name: ${name}`,
-      isMobile ? '' : `WhatsApp number: ${phone}`,
-      `Date: ${date}`,
-      `Group size: ${guests}`,
-      'Please confirm availability and send the meeting point.',
+      isMobile ? copy.messageIntro : copy.requestIntro,
+      `${copy.labels.tour}: ${copy.tour}`,
+      `${copy.labels.name}: ${name}`,
+      isMobile ? '' : `${copy.labels.phone}: ${phone}`,
+      `${copy.labels.date}: ${date}`,
+      `${copy.labels.group}: ${guests}`,
+      copy.confirm,
     ].filter(Boolean).join('\n');
 
     if (isMobile) {
@@ -361,7 +403,7 @@ function ensureBookingModal() {
 
       if (status) {
         status.dataset.state = '';
-        status.textContent = 'Opening WhatsApp...';
+        status.textContent = copy.opening;
       }
 
       window.location.href = getWhatsAppUrl(message);
@@ -473,7 +515,7 @@ async function submitWeb3Form(event, form, options = {}) {
 
   if (submitButton) {
     submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
+    submitButton.textContent = form.dataset.sendingButton || 'Sending...';
   }
 
   try {

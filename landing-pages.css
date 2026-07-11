@@ -1,16 +1,40 @@
 .landing-page{padding-top:0}
 .landing-page .nav{position:absolute;background:rgba(6,19,24,.58);border-color:rgba(255,255,255,.16);box-shadow:none}
 .landing-page .logo{color:#fff}
-.landing-nav-cta{color:#fff;font-weight:900;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 16px}
+.landing-page .nav-links{color:rgba(255,255,255,.86)}
+.landing-page .nav-links a:hover{color:#fff}
+.landing-nav-cta{color:#fff;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);font-weight:900;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 16px}
 .landing-hero{min-height:680px;padding:150px 0 90px;background-image:linear-gradient(90deg,rgba(6,19,24,.96),rgba(6,19,24,.70) 56%,rgba(6,19,24,.28)),url("assets/porto-hero.jpg")}
 .landing-hero .hero-shell{display:block}
 .landing-hero .hero-copy{max-width:790px}
+.landing-page .hero-copy{animation:none}
 .landing-hero h1{font-size:clamp(3rem,7vw,5.4rem)}
 .landing-hero .lead{max-width:680px}
 .landing-section{padding:88px 0}
 .landing-section h2{max-width:780px}
 .landing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
 .landing-card{padding:28px}
+.landing-card .num{margin-bottom:18px}
+.landing-story{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--azulejo-dark),#163743 55%,var(--terracotta));color:#fff}
+.landing-story:before{content:"";position:absolute;inset:0;background:url("assets/porto-hero.jpg") center/cover;opacity:.12}
+.landing-story .container{position:relative}
+.landing-story h2,.landing-story h3,.landing-story p{color:#fff}
+.landing-story .section-intro{color:rgba(255,255,255,.82)}
+.landing-story .card{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.2);box-shadow:none;backdrop-filter:blur(8px)}
+.landing-story .card p{color:rgba(255,255,255,.8)}
+.landing-eyebrow{display:inline-block;margin-bottom:12px;color:var(--terracotta);font-size:.82rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+.landing-gallery{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:18px;margin-top:34px}
+.landing-place{position:relative;min-height:330px;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow);background:#123}
+.landing-place img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.landing-place:hover img{transform:scale(1.035)}
+.landing-place-copy{position:absolute;inset:auto 0 0;padding:52px 22px 20px;background:linear-gradient(transparent,rgba(6,19,24,.94));color:#fff}
+.landing-place-copy h3{margin:0 0 5px;color:#fff}.landing-place-copy p{margin:0;color:rgba(255,255,255,.8);font-weight:700}
+.landing-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:38px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--line)}
+.landing-proof div{padding:22px;background:rgba(255,255,255,.92)}
+.landing-proof strong{display:block;font-size:1.05rem}.landing-proof span{color:var(--muted);font-size:.9rem;font-weight:700}
+.landing-reviews{background:linear-gradient(180deg,rgba(233,244,244,.7),rgba(255,255,255,.65))}
+.landing-review{display:flex;flex-direction:column;gap:12px}.landing-review .review-meta{margin-top:auto}
+.landing-faq{max-width:860px}.landing-faq details{padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}.landing-faq details+details{margin-top:12px}.landing-faq summary{cursor:pointer;font-weight:950}.landing-faq details p{color:var(--muted);font-weight:650}
 .landing-split{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:start}
 .landing-panel{padding:34px;border-radius:var(--radius);background:linear-gradient(135deg,var(--azulejo-dark),var(--river));color:#fff;box-shadow:var(--shadow)}
 .landing-panel h2,.landing-panel p{color:#fff}
@@ -26,8 +50,23 @@
 .landing-footer a:hover{color:var(--gold)}
 [dir="rtl"] .landing-list{padding-left:0;padding-right:22px}
 [dir="rtl"] .landing-footer-links{justify-content:flex-start}
+[dir="rtl"] .booking-close{right:auto;left:14px}
+[dir="rtl"] .booking-dialog-copy{padding-right:0;padding-left:48px}
+.landing-page.modal-open .availability-float{display:none}
 @media(max-width:760px){
   .landing-page .nav-inner{padding:10px 0}.landing-page .logo span:last-child{display:inline}.landing-nav-cta{font-size:.84rem;padding:8px 11px}
   .landing-hero{min-height:620px;padding:125px 0 72px}.landing-hero h1{font-size:clamp(2.65rem,13vw,4rem)}
-  .landing-section{padding:64px 0}.landing-grid,.landing-split{grid-template-columns:1fr}.landing-footer-inner{display:block}.landing-footer-links{justify-content:flex-start;margin-top:22px}
+  .landing-page .nav-links{display:none}.landing-section{padding:64px 0}.landing-grid,.landing-split,.landing-gallery{grid-template-columns:1fr}.landing-place{min-height:300px}.landing-proof{grid-template-columns:1fr 1fr}.landing-footer-inner{display:block}.landing-footer-links{justify-content:flex-start;margin-top:22px}
+  .landing-page .availability-float{
+    display:flex;
+    left:14px;
+    right:14px;
+    bottom:12px;
+    z-index:85;
+    width:auto;
+    min-height:56px;
+    font-size:1rem;
+    box-shadow:0 18px 40px rgba(16,34,42,.32);
+  }
+  [dir="rtl"] .booking-close{left:10px}
 }

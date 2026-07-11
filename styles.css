@@ -1524,6 +1524,22 @@ body.modal-open{overflow:hidden}
   padding-top:24px;
 }
 .footer a:hover{color:var(--azulejo-dark)}
+.footer .landing-footer-links{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 18px;
+  margin-top:8px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.footer .landing-footer-links a{
+  color:var(--azulejo-dark);
+  font-size:.88rem;
+  font-weight:900;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
 .photo-credits{
   width:100%;
   margin-top:10px;
