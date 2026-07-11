@@ -1,92 +1,571 @@
-.landing-page{padding-top:0}
-.landing-page .nav{position:absolute;background:rgba(6,19,24,.58);border-color:rgba(255,255,255,.16);box-shadow:none}
-.landing-page .logo{color:#fff}
-.landing-page .nav-links{color:rgba(255,255,255,.86)}
-.landing-page .nav-links a:hover{color:#fff}
-.landing-nav-cta{color:#fff;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);font-weight:900;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 16px}
-.landing-hero{min-height:680px;padding:150px 0 90px;background-image:linear-gradient(90deg,rgba(6,19,24,.96),rgba(6,19,24,.70) 56%,rgba(6,19,24,.28)),url("assets/porto-hero.jpg")}
-.landing-hero .hero-shell{display:block}
-.landing-hero .hero-copy{max-width:790px}
-.landing-page .hero-copy{animation:none}
-.landing-hero h1{font-size:clamp(3rem,7vw,5.4rem)}
-.landing-hero .lead{max-width:680px}
-.landing-section{padding:88px 0}
-.landing-section h2{max-width:780px}
-.landing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
-.landing-card{padding:28px}
-.landing-card .num{margin-bottom:18px}
-.landing-story{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--azulejo-dark),#163743 55%,var(--terracotta));color:#fff}
-.landing-story:before{content:"";position:absolute;inset:0;background:url("assets/porto-hero.jpg") center/cover;opacity:.12}
-.landing-story .container{position:relative}
-.landing-story h2,.landing-story h3,.landing-story p{color:#fff}
-.landing-story .section-intro{color:rgba(255,255,255,.82)}
-.landing-story .card{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.2);box-shadow:none;backdrop-filter:blur(8px)}
-.landing-story .card p{color:rgba(255,255,255,.8)}
-.landing-eyebrow{display:inline-block;margin-bottom:12px;color:var(--terracotta);font-size:.82rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-.landing-gallery{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:18px;margin-top:34px}
-.landing-place{position:relative;min-height:330px;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow);background:#123}
-.landing-place img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
-.landing-place:hover img{transform:scale(1.035)}
-.landing-place-copy{position:absolute;inset:auto 0 0;padding:52px 22px 20px;background:linear-gradient(transparent,rgba(6,19,24,.94));color:#fff}
-.landing-place-copy h3{margin:0 0 5px;color:#fff}.landing-place-copy p{margin:0;color:rgba(255,255,255,.8);font-weight:700}
-.landing-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:38px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--line)}
-.landing-proof div{padding:22px;background:rgba(255,255,255,.92)}
-.landing-proof strong{display:block;font-size:1.05rem}.landing-proof span{color:var(--muted);font-size:.9rem;font-weight:700}
-.landing-reviews{background:linear-gradient(180deg,rgba(233,244,244,.7),rgba(255,255,255,.65))}
-.landing-review{display:flex;flex-direction:column;gap:12px}.landing-review .review-meta{margin-top:auto}
-.landing-faq{max-width:860px}.landing-faq details{padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}.landing-faq details+details{margin-top:12px}.landing-faq summary{cursor:pointer;font-weight:950}.landing-faq details p{color:var(--muted);font-weight:650}
-.landing-split{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:start}
-.landing-panel{padding:34px;border-radius:var(--radius);background:linear-gradient(135deg,var(--azulejo-dark),var(--river));color:#fff;box-shadow:var(--shadow)}
-.landing-panel h2,.landing-panel p{color:#fff}
-.landing-list{margin:20px 0 0;padding-left:22px;font-weight:750}
-.landing-list li{margin:10px 0}
-.landing-cta{padding:82px 0;background:linear-gradient(135deg,rgba(239,180,71,.22),rgba(31,145,167,.15));text-align:center}
-.landing-cta .section-intro{margin-left:auto;margin-right:auto}
-.landing-footer{padding:38px 0 48px;background:var(--ink);color:rgba(255,255,255,.76)}
-.landing-footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
-.landing-footer strong{display:block;color:#fff;margin-bottom:10px}
-.landing-footer-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px 18px}
-.landing-footer a{color:#fff;text-decoration:underline;text-underline-offset:4px;font-weight:800}
-.landing-footer a:hover{color:var(--gold)}
-.landing-footer .footer-review-qr{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);box-shadow:none;text-decoration:none}
-.landing-footer .footer-review-qr strong{color:#fff}
-.landing-footer .footer-review-qr span{color:rgba(255,255,255,.76)}
-.attractions-hero{background-image:linear-gradient(90deg,rgba(6,19,24,.96),rgba(6,19,24,.68) 58%,rgba(6,19,24,.2)),url("assets/porto-card-wine.jpg")}
-.attraction-ranking{background:linear-gradient(180deg,rgba(233,244,244,.76),rgba(255,248,237,.7))}
-.attraction-feature{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:32px;margin-top:38px;padding:42px;border:1px solid rgba(239,180,71,.45);border-radius:var(--radius);background:linear-gradient(135deg,#fff,rgba(239,180,71,.18));box-shadow:var(--shadow);overflow:hidden}
-.attraction-rank{display:grid;place-items:center;width:54px;height:54px;margin-bottom:18px;border-radius:50%;background:var(--ink);color:var(--gold);font-size:1.05rem;font-weight:950;box-shadow:0 10px 24px rgba(16,34,42,.2)}
-.attraction-number-one .attraction-rank{position:absolute;top:22px;right:22px;width:68px;height:68px;background:linear-gradient(135deg,var(--gold),#f47b42);color:#281300;font-size:1.25rem}
-.attraction-feature-copy{padding-right:68px}.attraction-feature h3{margin:4px 0 12px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:1;color:var(--ink)}
-.attraction-type{color:var(--terracotta);font-size:.78rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}.attraction-deck{margin:0 0 10px;color:var(--azulejo-dark);font-size:1.25rem;font-weight:900}
-.attraction-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.attraction-chips span{padding:7px 11px;border-radius:999px;background:rgba(18,110,166,.1);color:var(--azulejo-dark);font-size:.82rem;font-weight:900}
-.attraction-visual{min-height:390px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;border-radius:var(--radius);background:linear-gradient(145deg,rgba(10,66,95,.96),rgba(31,145,167,.82)),url("assets/porto-card-wine.jpg") center/cover;color:#fff;text-align:center;box-shadow:0 18px 40px rgba(16,34,42,.2)}
-.attraction-visual.cooking-visual{background:url("assets/cooking-eclairs.jpg") center/cover}
-.attraction-visual span{color:var(--gold);font-weight:950;text-transform:uppercase;letter-spacing:.18em}.attraction-visual strong{font-size:3.2rem;line-height:1.05}.attraction-visual small{margin-top:12px;max-width:220px;font-size:.95rem;font-weight:750}
-.attraction-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px}.attraction-card{position:relative;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:0 16px 38px rgba(16,34,42,.1)}
-.attraction-card h3{margin:6px 0 12px;font-size:1.75rem;line-height:1.1}.attraction-card p{color:var(--muted);font-weight:650}.attraction-card>a{display:inline-block;margin-top:18px;color:var(--azulejo-dark);font-weight:950;text-decoration:underline;text-underline-offset:4px}
-.attraction-best{margin-top:20px;padding:14px;border-left:4px solid var(--gold);background:rgba(239,180,71,.1)}.attraction-best strong,.attraction-best span{display:block}.attraction-best span{color:var(--muted);font-size:.9rem;font-weight:700}
-.attraction-chooser .landing-grid{grid-template-columns:repeat(3,1fr)}
-[dir="rtl"] .landing-list{padding-left:0;padding-right:22px}
-[dir="rtl"] .landing-footer-links{justify-content:flex-start}
-[dir="rtl"] .booking-close{right:auto;left:14px}
-[dir="rtl"] .booking-dialog-copy{padding-right:0;padding-left:48px}
-.landing-page.modal-open .availability-float{display:none}
-@media(max-width:760px){
-  .landing-page .nav-inner{padding:10px 0}.landing-page .logo span:last-child{display:inline}.landing-nav-cta{font-size:.84rem;padding:8px 11px}
-  .landing-hero{min-height:620px;padding:125px 0 72px}.landing-hero h1{font-size:clamp(2.65rem,13vw,4rem)}
-  .landing-page .nav-links{display:none}.landing-section{padding:64px 0}.landing-grid,.landing-split,.landing-gallery{grid-template-columns:1fr}.landing-place{min-height:300px}.landing-proof{grid-template-columns:1fr 1fr}.landing-footer-inner{display:block}.landing-footer-links{justify-content:flex-start;margin-top:22px}
-  .landing-page .availability-float{
-    display:flex;
-    left:14px;
-    right:14px;
-    bottom:12px;
-    z-index:85;
-    width:auto;
-    min-height:56px;
-    font-size:1rem;
-    box-shadow:0 18px 40px rgba(16,34,42,.32);
+.landing-page {
+  padding-top: 0;
+}
+.landing-page .nav {
+  position: absolute;
+  background: rgba(6, 19, 24, 0.58);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+.landing-page .logo {
+  color: #fff;
+}
+.landing-page .nav-links {
+  color: rgba(255, 255, 255, 0.86);
+}
+.landing-page .nav-links a:hover {
+  color: #fff;
+}
+.landing-nav-cta {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  font-weight: 900;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+.landing-hero {
+  min-height: 680px;
+  padding: 150px 0 90px;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(6, 19, 24, 0.96),
+      rgba(6, 19, 24, 0.7) 56%,
+      rgba(6, 19, 24, 0.28)
+    ),
+    url("assets/porto-hero.jpg");
+}
+.landing-hero .hero-shell {
+  display: block;
+}
+.landing-hero .hero-copy {
+  max-width: 790px;
+}
+.landing-page .hero-copy {
+  animation: none;
+}
+.landing-hero h1 {
+  font-size: clamp(3rem, 7vw, 5.4rem);
+}
+.landing-hero .lead {
+  max-width: 680px;
+}
+.landing-section {
+  padding: 88px 0;
+}
+.landing-section h2 {
+  max-width: 780px;
+}
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 34px;
+}
+.landing-card {
+  padding: 28px;
+}
+.landing-card .num {
+  margin-bottom: 18px;
+}
+.landing-story {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--azulejo-dark),
+    #163743 55%,
+    var(--terracotta)
+  );
+  color: #fff;
+}
+.landing-story:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/porto-hero.jpg") center/cover;
+  opacity: 0.12;
+}
+.landing-story .container {
+  position: relative;
+}
+.landing-story h2,
+.landing-story h3,
+.landing-story p {
+  color: #fff;
+}
+.landing-story .section-intro {
+  color: rgba(255, 255, 255, 0.82);
+}
+.landing-story .card {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+}
+.landing-story .card p {
+  color: rgba(255, 255, 255, 0.8);
+}
+.landing-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--terracotta);
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.landing-gallery {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr 0.85fr;
+  gap: 18px;
+  margin-top: 34px;
+}
+.landing-place {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: #123;
+}
+.landing-place img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.landing-place:hover img {
+  transform: scale(1.035);
+}
+.landing-place-copy {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 52px 22px 20px;
+  background: linear-gradient(transparent, rgba(6, 19, 24, 0.94));
+  color: #fff;
+}
+.landing-place-copy h3 {
+  margin: 0 0 5px;
+  color: #fff;
+}
+.landing-place-copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
+}
+.landing-proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 38px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--line);
+}
+.landing-proof div {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.92);
+}
+.landing-proof strong {
+  display: block;
+  font-size: 1.05rem;
+}
+.landing-proof span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.landing-reviews {
+  background: linear-gradient(
+    180deg,
+    rgba(233, 244, 244, 0.7),
+    rgba(255, 255, 255, 0.65)
+  );
+}
+.landing-review {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.landing-review .review-meta {
+  margin-top: auto;
+}
+.landing-faq {
+  max-width: 860px;
+}
+.landing-faq details {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.landing-faq details + details {
+  margin-top: 12px;
+}
+.landing-faq summary {
+  cursor: pointer;
+  font-weight: 950;
+}
+.landing-faq details p {
+  color: var(--muted);
+  font-weight: 650;
+}
+.landing-split {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 42px;
+  align-items: start;
+}
+.landing-panel {
+  padding: 34px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--azulejo-dark), var(--river));
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.landing-panel h2,
+.landing-panel p {
+  color: #fff;
+}
+.landing-list {
+  margin: 20px 0 0;
+  padding-left: 22px;
+  font-weight: 750;
+}
+.landing-list li {
+  margin: 10px 0;
+}
+.landing-cta {
+  padding: 82px 0;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 180, 71, 0.22),
+    rgba(31, 145, 167, 0.15)
+  );
+  text-align: center;
+}
+.landing-cta .section-intro {
+  margin-left: auto;
+  margin-right: auto;
+}
+.landing-footer {
+  padding: 38px 0 48px;
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.76);
+}
+.landing-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+}
+.landing-footer strong {
+  display: block;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.landing-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 18px;
+}
+.landing-footer a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 800;
+}
+.landing-footer a:hover {
+  color: var(--gold);
+}
+.landing-footer .footer-review-qr {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+  text-decoration: none;
+}
+.landing-footer .footer-review-qr strong {
+  color: #fff;
+}
+.landing-footer .footer-review-qr span {
+  color: rgba(255, 255, 255, 0.76);
+}
+.attractions-hero {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(6, 19, 24, 0.96),
+      rgba(6, 19, 24, 0.68) 58%,
+      rgba(6, 19, 24, 0.2)
+    ),
+    url("assets/porto-card-wine.jpg");
+}
+.attraction-ranking {
+  background: linear-gradient(
+    180deg,
+    rgba(233, 244, 244, 0.76),
+    rgba(255, 248, 237, 0.7)
+  );
+}
+.attraction-feature {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  gap: 32px;
+  margin-top: 38px;
+  padding: 42px;
+  border: 1px solid rgba(239, 180, 71, 0.45);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #fff, rgba(239, 180, 71, 0.18));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.attraction-rank {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--gold);
+  font-size: 1.05rem;
+  font-weight: 950;
+  box-shadow: 0 10px 24px rgba(16, 34, 42, 0.2);
+}
+.attraction-number-one .attraction-rank {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 68px;
+  height: 68px;
+  background: linear-gradient(135deg, var(--gold), #f47b42);
+  color: #281300;
+  font-size: 1.25rem;
+}
+.attraction-feature-copy {
+  padding-right: 68px;
+}
+.attraction-feature h3 {
+  margin: 4px 0 12px;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1;
+  color: var(--ink);
+}
+.attraction-type {
+  color: var(--terracotta);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.attraction-deck {
+  margin: 0 0 10px;
+  color: var(--azulejo-dark);
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+.attraction-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+.attraction-chips span {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(18, 110, 166, 0.1);
+  color: var(--azulejo-dark);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+.attraction-visual {
+  min-height: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(10, 66, 95, 0.96), rgba(31, 145, 167, 0.82)),
+    url("assets/porto-card-wine.jpg") center/cover;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(16, 34, 42, 0.2);
+}
+.attraction-visual.cooking-visual {
+  background: url("assets/cooking-eclairs.jpg") center/cover;
+}
+.attraction-visual span {
+  color: var(--gold);
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+.attraction-visual strong {
+  font-size: 3.2rem;
+  line-height: 1.05;
+}
+.attraction-visual small {
+  margin-top: 12px;
+  max-width: 220px;
+  font-size: 0.95rem;
+  font-weight: 750;
+}
+.attraction-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 24px;
+}
+.attraction-card {
+  position: relative;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 16px 38px rgba(16, 34, 42, 0.1);
+}
+.attraction-card h3 {
+  margin: 6px 0 12px;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+.attraction-card p {
+  color: var(--muted);
+  font-weight: 650;
+}
+.attraction-card > a {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--azulejo-dark);
+  font-weight: 950;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.attraction-best {
+  margin-top: 20px;
+  padding: 14px;
+  border-left: 4px solid var(--gold);
+  background: rgba(239, 180, 71, 0.1);
+}
+.attraction-best strong,
+.attraction-best span {
+  display: block;
+}
+.attraction-best span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.attraction-chooser .landing-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+[dir="rtl"] .landing-list {
+  padding-left: 0;
+  padding-right: 22px;
+}
+[dir="rtl"] .landing-footer-links {
+  justify-content: flex-start;
+}
+[dir="rtl"] .booking-close {
+  right: auto;
+  left: 14px;
+}
+[dir="rtl"] .booking-dialog-copy {
+  padding-right: 0;
+  padding-left: 48px;
+}
+.landing-page.modal-open .availability-float {
+  display: none;
+}
+@media (max-width: 760px) {
+  .landing-page .nav-inner {
+    padding: 10px 0;
   }
-  [dir="rtl"] .booking-close{left:10px}
-  .attraction-feature,.attraction-grid,.attraction-chooser .landing-grid{grid-template-columns:1fr}.attraction-feature{padding:28px 22px}.attraction-feature-copy{padding-right:0;padding-top:54px}.attraction-number-one .attraction-rank{top:18px;right:18px}.attraction-visual{min-height:280px}
-  .attraction-visual.cooking-visual{min-height:0;aspect-ratio:3/4;background-size:contain;background-repeat:no-repeat;background-color:#edf3f2}
+  .landing-page .logo span:last-child {
+    display: inline;
+  }
+  .landing-nav-cta {
+    font-size: 0.84rem;
+    padding: 8px 11px;
+  }
+  .landing-hero {
+    min-height: 620px;
+    padding: 125px 0 72px;
+  }
+  .landing-hero h1 {
+    font-size: clamp(2.65rem, 13vw, 4rem);
+  }
+  .landing-page .nav-links {
+    display: none;
+  }
+  .landing-section {
+    padding: 64px 0;
+  }
+  .landing-grid,
+  .landing-split,
+  .landing-gallery {
+    grid-template-columns: 1fr;
+  }
+  .landing-place {
+    min-height: 300px;
+  }
+  .landing-proof {
+    grid-template-columns: 1fr 1fr;
+  }
+  .landing-footer-inner {
+    display: block;
+  }
+  .landing-footer-links {
+    justify-content: flex-start;
+    margin-top: 22px;
+  }
+  .landing-page .availability-float {
+    display: flex;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 85;
+    width: auto;
+    min-height: 56px;
+    font-size: 1rem;
+    box-shadow: 0 18px 40px rgba(16, 34, 42, 0.32);
+  }
+  [dir="rtl"] .booking-close {
+    left: 10px;
+  }
+  .attraction-feature,
+  .attraction-grid,
+  .attraction-chooser .landing-grid {
+    grid-template-columns: 1fr;
+  }
+  .attraction-feature {
+    padding: 28px 22px;
+  }
+  .attraction-feature-copy {
+    padding-right: 0;
+    padding-top: 54px;
+  }
+  .attraction-number-one .attraction-rank {
+    top: 18px;
+    right: 18px;
+  }
+  .attraction-visual {
+    min-height: 280px;
+  }
+  .attraction-visual.cooking-visual {
+    min-height: 0;
+    aspect-ratio: 3/4;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #edf3f2;
+  }
 }
