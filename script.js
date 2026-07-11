@@ -535,6 +535,14 @@ function closeBookingModal() {
   }
 }
 
+function openBookingModalFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get('book') === '1') {
+    openBookingModal();
+  }
+}
+
 function openReviewModal() {
   ensureReviewModal();
 
@@ -586,3 +594,5 @@ document.querySelectorAll('[data-review-form]').forEach((form) => {
     });
   });
 });
+
+openBookingModalFromUrl();
