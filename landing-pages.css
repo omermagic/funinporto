@@ -51,6 +51,21 @@
 .landing-footer .footer-review-qr{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);box-shadow:none;text-decoration:none}
 .landing-footer .footer-review-qr strong{color:#fff}
 .landing-footer .footer-review-qr span{color:rgba(255,255,255,.76)}
+.attractions-hero{background-image:linear-gradient(90deg,rgba(6,19,24,.96),rgba(6,19,24,.68) 58%,rgba(6,19,24,.2)),url("assets/porto-card-wine.jpg")}
+.attraction-ranking{background:linear-gradient(180deg,rgba(233,244,244,.76),rgba(255,248,237,.7))}
+.attraction-feature{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:32px;margin-top:38px;padding:42px;border:1px solid rgba(239,180,71,.45);border-radius:var(--radius);background:linear-gradient(135deg,#fff,rgba(239,180,71,.18));box-shadow:var(--shadow);overflow:hidden}
+.attraction-rank{display:grid;place-items:center;width:54px;height:54px;margin-bottom:18px;border-radius:50%;background:var(--ink);color:var(--gold);font-size:1.05rem;font-weight:950;box-shadow:0 10px 24px rgba(16,34,42,.2)}
+.attraction-number-one .attraction-rank{position:absolute;top:22px;right:22px;width:68px;height:68px;background:linear-gradient(135deg,var(--gold),#f47b42);color:#281300;font-size:1.25rem}
+.attraction-feature-copy{padding-right:68px}.attraction-feature h3{margin:4px 0 12px;font-size:clamp(2.2rem,5vw,4.2rem);line-height:1;color:var(--ink)}
+.attraction-type{color:var(--terracotta);font-size:.78rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}.attraction-deck{margin:0 0 10px;color:var(--azulejo-dark);font-size:1.25rem;font-weight:900}
+.attraction-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.attraction-chips span{padding:7px 11px;border-radius:999px;background:rgba(18,110,166,.1);color:var(--azulejo-dark);font-size:.82rem;font-weight:900}
+.attraction-visual{min-height:390px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;border-radius:var(--radius);background:linear-gradient(145deg,rgba(10,66,95,.96),rgba(31,145,167,.82)),url("assets/porto-card-wine.jpg") center/cover;color:#fff;text-align:center;box-shadow:0 18px 40px rgba(16,34,42,.2)}
+.attraction-visual.cooking-visual{background:url("assets/cooking-eclairs.jpg") center/cover}
+.attraction-visual span{color:var(--gold);font-weight:950;text-transform:uppercase;letter-spacing:.18em}.attraction-visual strong{font-size:3.2rem;line-height:1.05}.attraction-visual small{margin-top:12px;max-width:220px;font-size:.95rem;font-weight:750}
+.attraction-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px}.attraction-card{position:relative;padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:0 16px 38px rgba(16,34,42,.1)}
+.attraction-card h3{margin:6px 0 12px;font-size:1.75rem;line-height:1.1}.attraction-card p{color:var(--muted);font-weight:650}.attraction-card>a{display:inline-block;margin-top:18px;color:var(--azulejo-dark);font-weight:950;text-decoration:underline;text-underline-offset:4px}
+.attraction-best{margin-top:20px;padding:14px;border-left:4px solid var(--gold);background:rgba(239,180,71,.1)}.attraction-best strong,.attraction-best span{display:block}.attraction-best span{color:var(--muted);font-size:.9rem;font-weight:700}
+.attraction-chooser .landing-grid{grid-template-columns:repeat(3,1fr)}
 [dir="rtl"] .landing-list{padding-left:0;padding-right:22px}
 [dir="rtl"] .landing-footer-links{justify-content:flex-start}
 [dir="rtl"] .booking-close{right:auto;left:14px}
@@ -72,4 +87,6 @@
     box-shadow:0 18px 40px rgba(16,34,42,.32);
   }
   [dir="rtl"] .booking-close{left:10px}
+  .attraction-feature,.attraction-grid,.attraction-chooser .landing-grid{grid-template-columns:1fr}.attraction-feature{padding:28px 22px}.attraction-feature-copy{padding-right:0;padding-top:54px}.attraction-number-one .attraction-rank{top:18px;right:18px}.attraction-visual{min-height:280px}
+  .attraction-visual.cooking-visual{min-height:0;aspect-ratio:3/4;background-size:contain;background-repeat:no-repeat;background-color:#edf3f2}
 }
