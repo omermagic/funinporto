@@ -10,6 +10,10 @@
 .landing-page .logo {
   color: #fff;
 }
+.landing-page .logo > span:last-child::after {
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+}
 .landing-page .nav-links {
   color: rgba(255, 255, 255, 0.86);
 }
